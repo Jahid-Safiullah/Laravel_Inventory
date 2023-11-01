@@ -14,7 +14,7 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', function () {
-    return view('admin.layout');
+    return view('admin\dashbord');
 });
 
 Route::get('/add_supplier', [EmployeeController::class, 'add_supplier'])->name('add_supplier');
