@@ -58,7 +58,7 @@
           </li>
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{url('/')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -77,8 +77,8 @@
             <div class="collapse" id="ui-Suppliers">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('add_supplier')}}">Add Supplier</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pag">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="page">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('edit_supplier')}}">Edit Supplier</a></li>
+               {{-- <li class="nav-item"> <a class="nav-link" href="{{route('delete_supplier')}}">Delete Supplier</a></li> --}}
               </ul>
             </div>
           </li>
@@ -93,9 +93,9 @@
             </a>
             <div class="collapse" id="ui-Customers">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages">All Customer</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages">Due Customer</a></li>
-                <li class="nav-item"> <a class="nav-link" href="page">Customer wise Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('due_customer')}}">Due Customer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('customer_report')}}">Customer wise Report</a></li>
               </ul>
             </div>
           </li>
@@ -118,7 +118,7 @@
           </li>
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages">
+            <a class="nav-link" href="{{route('units')}}">
               <span class="menu-icon">
                 <i class="fa-solid fa-weight-hanging" style="color: #727171;"></i>
               </span>
@@ -129,7 +129,7 @@
 
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages">
+            <a class="nav-link" href="{{route('all_catagories')}}">
               <span class="menu-icon">
                 <i class="fa-solid fa-diagram-next" style="color: #0354e0;"></i>
               </span>
@@ -137,7 +137,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="{{route('all_product')}}">
               <span class="menu-icon">
                 <i class="fa-brands fa-product-hunt" style="color: #dc00b7;"></i>
               </span>
