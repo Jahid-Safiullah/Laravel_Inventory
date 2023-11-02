@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,9 +36,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('/', function () {
+    return view('admin.dashbord');
+});
+
 
 
 Route::get('/add_supplier', [SupplierController::class, 'add_supplier'])->name('add_supplier');
+Route::get('/all_supplier', [SupplierController::class, 'all_supplier'])->name('all_supplier');
 Route::get('/edit_supplier', [SupplierController::class, 'edit_supplier'])->name('edit_supplier');
 Route::delete('/delete_supplier', [SupplierController::class, 'delete_supplier'])->name('delete_supplier');
 

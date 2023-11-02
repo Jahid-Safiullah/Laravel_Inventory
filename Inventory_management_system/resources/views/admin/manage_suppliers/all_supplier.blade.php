@@ -1,14 +1,34 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="">
-
-    <div class="col-lg-12 grid-margin stretch-card">
+<div class="">
+<div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
+
+                
+
                   <div class="card-body">
-                    <h3 class="card-title">All Product Progress</h3>
-                    <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
-                    </p>
+
+
+                  <div class="template-demo mt-2  d-flex align-items-end flex-column">
+                          
+                          <button type="button" class="btn btn-outline-secondary btn-icon-text"> Edit <i class="mdi mdi-file-check btn-icon-append"></i>
+                          </button>
+                         
+                 </div>
+
+                    <h3 class="card-title">All Suppliers</h3>
+
+                    
+                <div class="form-group col-sm">
+                      <div class="input-group  ">
+                        <input type="text" class="form-control" placeholder="Supplier's name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-sm btn-primary" type="button">Search</button>
+                        </div>
+                      </div>
+                </div>
+                    
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
@@ -16,8 +36,11 @@
                             <th> Product </th>
                             <th> First name </th>
                             <th> Progress </th>
-                            <th> Amount </th>
+                           
                             <th> Deadline </th>
+                            <th> Status </th>
+                            <th> Action </th>
+
                           </tr>
                         </thead>
                         <tbody>
@@ -124,5 +147,9 @@
 
 
 
+    </div>
+
+
+      
     </div>
 @endsection

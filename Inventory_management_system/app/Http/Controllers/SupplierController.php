@@ -11,6 +11,11 @@ class SupplierController extends Controller
         return view ('admin.manage_suppliers.add_supplier');
     }
 
+    public function all_supplier(){
+
+        return view ('admin.manage_suppliers.all_supplier');
+    }
+
     public function edit_supplier(){
 
         return view ('admin.manage_suppliers.edit_supplier');

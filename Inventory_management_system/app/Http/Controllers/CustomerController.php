@@ -11,7 +11,7 @@ class CustomerController extends Controller
     }
 
     public function due_customer(){
-        return view ('admin.manage_customers.all_customers');
+        return view ('admin.manage_customers.due_customer');
     }
 
     public function customer_report(){
