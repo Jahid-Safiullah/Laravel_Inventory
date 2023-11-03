@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class UnitController extends Controller
 {
     public function units(){
-        return view('admin.mange_units.units');
+        return view('admin.mange_units.add_unit');
     }
 }

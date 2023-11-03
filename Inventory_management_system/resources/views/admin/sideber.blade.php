@@ -93,9 +93,9 @@
             </a>
             <div class="collapse" id="ui-Customers">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('due_customer')}}">Due Customer</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('customer_report')}}">Customer wise Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('add_customer')}}">Add Cusotmer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer Report</a></li>
+
               </ul>
             </div>
           </li>
@@ -129,7 +129,7 @@
 
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('all_catagories')}}">
+            <a class="nav-link" href="{{route('add_catagories')}}">
               <span class="menu-icon">
                 <i class="fa-solid fa-diagram-next" style="color: #0354e0;"></i>
               </span>

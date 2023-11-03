@@ -30,54 +30,47 @@
 
                     <br>
                     <!-- <p class="card-description"> Horizontal form layout </p> -->
-                    <form class="forms-sample" method="POST" action="{{route('add_supplier')}}" enctype="multipart/form-data">
-                        @csrf
+                    <form class="forms-sample"  >
                         <div class="form-group row " >
                             <label for="supplier" class="col-sm-2 col-form-label">Supplier Name</label>
                             <div class="col-sm-10 ">
                                 <input style="border-radius: 10px;" type="text" class="form-control" id="supplier"
-                                  name="supplier_name"  placeholder="Supplier Name">
+                                    placeholder="Supplier Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Supplier Email</label>
                             <div class="col-sm-10">
                                 <input style="border-radius: 10px;" type="email" class="form-control"
-                                   name="supplier_email" id="exampleInputEmail2" placeholder="Email">
+                                    id="exampleInputEmail2" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="mobile" class="col-sm-2 col-form-label">Phone</label>
+                            <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
                             <div class="col-sm-10">
                                 <input style="border-radius: 10px;" type="text" class="form-control" id="mobile"
-                                   name="supplier_phone" placeholder="Mobile number">
+                                    placeholder="Mobile number">
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="location" class="col-sm-2 col-form-label">Location</label>
+                            <div class="col-sm-10">
+                                <input style="border-radius: 10px;" type="text" class="form-control" id="location"
+                                    placeholder="Location">
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
                                 <input style="border-radius: 10px;" type="text" class="form-control" id="address"
-                                name="supplier_address"  placeholder="Address">
+                                    placeholder="Address">
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="image" class="col-sm-2 col-form-label">Image</label>
-                            <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="file" class="form-control" id="image"
-                                   name="supplier_image" placeholder="image">
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="status" class="col-sm-2 col-form-label">Status</label>
-                            <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="number" class="form-control" id="status"
-                                   name="supplier_status" placeholder="status">
-                            </div>
-                        </div>
+
                         <div class="d-flex align-items-end flex-column">
                             <div class="form-check form-check-flat form-check-primary ">
                                 <label class="form-check-label">

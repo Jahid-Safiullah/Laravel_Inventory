@@ -1,64 +1,64 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="">
+<div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
 
-    <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Add Catagory</h4>
-                    <br>
-                    <!-- <p class="card-description"> Horizontal form layout </p> -->
-                    <form class="forms-sample">
-                      <div class="form-group row">
-                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Catagory Name</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
-                        </div>
-                      </div>
-                      <!-- <div class="form-group row">
-                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Supplier Email</label>
-                        <div class="col-sm-9">
-                          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
-                        </div>
-                      </div> -->
-                      <div class="form-group row">
-                        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Catagory Status</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputMobile" placeholder="Catagory Status">
-                        </div>
-                      </div>
-                      <!-- <div class="form-group row">
-                        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
-                        </div>
-                      </div> -->
-                      <div class="d-flex align-items-end flex-column" >
-                      <div class="form-check form-check-flat form-check-primary ">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> Remember me </label>
-                      </div>
-                      <div class="">
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <button class="btn btn-dark">Cancel</button>
-                      </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+    <h3 class="card-title "> All Catagories </h3>
 
-
-
-
-
-
+    <div class="input-group mb-3 col-4 "  >
+        <input style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Supplier name.." aria-label="Supplier name" aria-describedby="button-addon2" >
+        <button style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
     </div>
+
+
+</div>
+
+
+<div class="table-responsive border border-rounded " style="border-radius: 25px;">
+
+    <table class="table table-striped table-hover table-dark   " >
+        <thead class="table-info">
+          <tr >
+            <th  style="color:white" scope="col">SL.</th>
+            <th  style="color:white" scope="col">Catagories Name</th>
+            {{-- <th  style="color:white" scope="col">Supplier Email</th>
+            <th  style="color:white" scope="col">Mobile</th>
+            <th  style="color:white" scope="col">Address</th> --}}
+            <th  style="color:white" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            {{-- <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td> --}}
+            <td class="d-flex ">
+                <div class="pr-1">
+                    <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i>Edit</a>
+                </div>
+                <div>
+                    <a href="" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i>Active</a>
+                </div>
+            </td>
+
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            {{-- <td>Thornton</td> --}}
+            {{-- <td>@fat</td> --}}
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="">Larry the Bird</td>
+
+          </tr>
+        </tbody>
+      </table>
+</div>
+
 @endsection
+
+

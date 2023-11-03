@@ -48,18 +48,22 @@ Route::get('/edit_supplier', [SupplierController::class, 'edit_supplier'])->name
 Route::delete('/delete_supplier', [SupplierController::class, 'delete_supplier'])->name('delete_supplier');
 
 
+
+Route::get('/add_customer', [CustomerController::class, 'add_customer'])->name('add_customer');
 Route::get('/all_customer', [CustomerController::class, 'all_customer'])->name('all_customer');
 Route::get('/due_customer', [CustomerController::class, 'due_customer'])->name('due_customer');
 Route::get('/customer_report', [CustomerController::class, 'customer_report'])->name('customer_report');
 
 
-Route::get('/units', [UnitController::class, 'units'])->name('units');
+
+
+Route::get('/add_units', [UnitController::class, 'units'])->name('units');
 // Route::patch('/due_customer', [UnitController::class, 'due_customer'])->name('due_customer');
 // Route::delete('/customer_report', [UnitController::class, 'customer_report'])->name('customer_report');
 
 
+Route::get('/add_catagories', [CatagoryController::class, 'add_catagories'])->name('add_catagories');
 Route::get('/all_catagories', [CatagoryController::class, 'all_catagories'])->name('all_catagories');
-// Route::patch('/due_customer', [CatagoryController::class, 'due_customer'])->name('due_customer');
 // Route::delete('/customer_report', [CatagoryController::class, 'customer_report'])->name('customer_report');
 
 
