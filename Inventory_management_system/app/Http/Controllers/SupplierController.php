@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class SupplierController extends Controller
 {
     public function index(){
-        return view('admin.manage_suppliers.add_supplier');
+        return view('admin\manage_suppliers\add_supplier');
     }
 
     public function add_supplier(Request $request){
