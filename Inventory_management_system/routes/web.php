@@ -42,10 +42,12 @@ Route::get('/', function () {
 
 
 
-Route::get('/add_supplier', [SupplierController::class, 'add_supplier'])->name('add_supplier');
+Route::get('/add_supplier', [SupplierController::class, 'index'])->name('index_supplier');
+Route::post('/add_supplier', [SupplierController::class, 'add_supplier'])->name('add_supplier');
 Route::get('/all_supplier', [SupplierController::class, 'all_supplier'])->name('all_supplier');
-Route::get('/edit_supplier', [SupplierController::class, 'edit_supplier'])->name('edit_supplier');
-Route::delete('/delete_supplier', [SupplierController::class, 'delete_supplier'])->name('delete_supplier');
+Route::get('/edit_supplier/{id}', [SupplierController::class, 'edit_supplier']);
+Route::post('/update_supplier/{id}', [SupplierController::class, 'update_supplier']);
+Route::get('/Search_Supplier',[SupplierController::class,'searchSupplier']);
 
 
 
