@@ -51,7 +51,7 @@ Route::get('/Search_Supplier',[SupplierController::class,'searchSupplier']);
 
 
 
-Route::get('/view_customer_form', [CustomerController::class, 'view_customer_form'])->name('view_customer_form');
+Route::get('/view_cusomer', [CustomerController::class, 'index']);
 Route::post('/add_customer', [CustomerController::class, 'add_customer'])->name('add_customer');
 Route::get('/all_customer', [CustomerController::class, 'all_customer'])->name('all_customer');
 Route::get('/edit_customer/{id}', [CustomerController::class, 'edit_customer']);
@@ -62,7 +62,7 @@ Route::get('/customer_report', [CustomerController::class, 'customer_report'])->
 
 
 
-Route::get('/add_units', [UnitController::class, 'units'])->name('units');
+Route::get('/view_unit_form', [UnitController::class, 'index'])->name('units');
 // Route::patch('/due_customer', [UnitController::class, 'due_customer'])->name('due_customer');
 // Route::delete('/customer_report', [UnitController::class, 'customer_report'])->name('customer_report');
 

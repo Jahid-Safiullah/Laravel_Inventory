@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function view_customer_form(){
+    public function index(){
        return view('admin.manage_customers.add_customer');
     }
 

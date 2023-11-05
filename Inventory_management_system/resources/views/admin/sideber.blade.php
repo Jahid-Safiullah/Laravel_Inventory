@@ -76,9 +76,9 @@
             </a>
             <div class="collapse" id="ui-Suppliers">
               <ul class="nav flex-column sub-menu">
-                {{-- <li class="nav-item"> <a class="nav-link" href="{{route('index_supplier')}}">Add Supplier</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('all_supplier')}}">All Supplier</a></li> --}}
-               {{-- <li class="nav-item"> <a class="nav-link" href="{{route('delete_supplier')}}">Delete Supplier</a></li> --}}
+                <li class="nav-item"> <a class="nav-link" href="{{route('index_supplier')}}">Add Supplier</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('all_supplier')}}">All Supplier</a></li>
+               <li class="nav-item"> <a class="nav-link" href="{{route('delete_supplier')}}">Delete Supplier</a></li>
               </ul>
             </div>
           </li>
@@ -93,7 +93,7 @@
             </a>
             <div class="collapse" id="ui-Customers">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('view_customer_form')}}">Add Cusotmer</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('/view_cusomer')}}">Add Cusotmer</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer </a></li>
                 <li class="nav-item"> <a class="nav-link" href="">All Customer Report</a></li>
 
