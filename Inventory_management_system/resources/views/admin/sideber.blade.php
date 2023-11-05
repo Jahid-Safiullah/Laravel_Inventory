@@ -94,7 +94,8 @@
             <div class="collapse" id="ui-Customers">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('view_customer_form')}}">Add Cusotmer</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('all_customer')}}">All Customer </a></li>
+                <li class="nav-item"> <a class="nav-link" href="">All Customer Report</a></li>
 
               </ul>
             </div>

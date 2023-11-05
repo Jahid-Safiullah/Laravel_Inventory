@@ -24,37 +24,32 @@
             <th  style="color:white" scope="col">Customer Email</th>
             <th  style="color:white" scope="col">Mobile</th>
             <th  style="color:white" scope="col">Address</th>
+            <th  style="color:white" scope="col">Image</th>
+            <th  style="color:white" scope="col">Status</th>
             <th  style="color:white" scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
+          @foreach($allCustomerData as $data)
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <td>{{$data->name}}</td>
+            <td>{{$data->email}}</td>
+            <td>{{$data->phone}}</td>
+            <td>{{$data->address}}</td>
+            <td>{{$data->image}}</td>
+            <td>{{$data->status}}</td>
             <td class="d-flex ">
                 <div class="pr-1">
-                    <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i>Edit</a>
+                    <a href="{{url('edit_customer',$data->id)}}" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i>Edit</a>
                 </div>
                 <div>
-                    <a href="" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i>Active</a>
+                    <a href="{{url('isActive',$data->id)}}" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i>Active</a>
                 </div>
             </td>
 
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+         @endforeach
         </tbody>
       </table>
 </div>

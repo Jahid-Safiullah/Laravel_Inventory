@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 08:04 AM
+-- Generation Time: Nov 05, 2023 at 08:00 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,6 +51,14 @@ CREATE TABLE `customers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Hanif khah', 'jhaid@gmial.com', '065416515622', 'mohajkli', '1699161756.webp', 1, '2023-11-04 21:06:27', '2023-11-04 23:22:36'),
+(2, 'jahangir alam', 'jahangir@gmail.com', '01521312655', 'puran Dhaka', '1699166703.webp', 0, '2023-11-05 00:45:04', '2023-11-05 00:45:24');
 
 -- --------------------------------------------------------
 
@@ -284,7 +292,7 @@ ALTER TABLE `catagories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`

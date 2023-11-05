@@ -14,42 +14,42 @@
                                     <i class="mdi mdi-reload btn-icon-prepend"></i> Reset </button>
                                 </div> -->
 
-                <div>
+                <!-- <div>
                     <button style="border-radius: 10px;" type="submit" class="btn btn-primary mr-2 border border-light"><i
                             class="fas fa-edit" style="color: #000000;"></i>Edit</button>
 
-                </div>
+                </div> -->
 
                 <div class="card-body">
                     <div style=" text-align: center;">
                         <div class="line"></div>
-                        <h3 class="card-title "> Add Customer </h3>
+                        <h3 class="card-title "> Edit Customer <span style="color:green"> ( {{$customerData->name}} ) </span> Information</h3>
                         <div class="line"></div>
                     </div>
 
 
                     <br>
                     <!-- <p class="card-description"> Horizontal form layout </p> -->
-                    <form class="forms-sample" method="post" action="{{route('add_customer')}}" enctype="multipart/form-data">
+                    <form class="forms-sample" method="POST" action="{{url('update_customer',$customerData->id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row " >
-                            <label for="Customer" class="col-sm-2 col-form-label">Customer Name</label>
+                            <label for="customer" class="col-sm-2 col-form-label">Customer Name</label>
                             <div class="col-sm-10 ">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="Customer"
+                                <input value='{{$customerData->name}}' style="border-radius: 10px;" type="text" class="form-control" id="customer"
                                   name="customer_name"  placeholder="Customer Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Customer Email</label>
                             <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="email" class="form-control"
+                                <input value='{{$customerData->email}}' style="border-radius: 10px;" type="email" class="form-control"
                                    name="customer_email" id="exampleInputEmail2" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="mobile" class="col-sm-2 col-form-label">Phone</label>
                             <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="mobile"
+                                <input value='{{$customerData->phone}}' style="border-radius: 10px;" type="text" class="form-control" id="mobile"
                                    name="customer_phone" placeholder="Mobile number">
                             </div>
                         </div>
@@ -58,13 +58,22 @@
                         <div class="form-group row">
                             <label for="address" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="address"
+                                <input value='{{$customerData->address}}' style="border-radius: 10px;" type="text" class="form-control" id="address"
                                 name="customer_address"  placeholder="Address">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                            <img style="width: 100px; height: 150px; border-radius: 10px;" src="/customer_image/{{$customerData->image}}" alt="image">
+                                <!-- <input style="border-radius: 10px;" type="file" class="form-control" id="image"
+                                   name="supplier_image" placeholder="image"> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label">Update Image</label>
                             <div class="col-sm-10">
                                 <input style="border-radius: 10px;" type="file" class="form-control" id="image"
                                    name="customer_image" placeholder="image">
@@ -73,14 +82,18 @@
 
                         <div class="form-group row">
                             <label for="status" class="col-sm-2 col-form-label">Status</label>
-                            <div class="col-sm-10 " >
-                                <select name="status" class="form-control"  style="border-radius: 10px; height:35px; background:#2A3038; color:azure"  id="status">
-                                    <option value="1" selected>Active</option>
-                                    <option value="0">In Active</option>
+                            <div class="col-sm-10">
 
-                                  </select>
+                            <select  name="status" class="form-control"  style="border-radius: 10px; height:35px; background:#2A3038; color:azure"  id="status">
+                                    <option {{($customerData->status==1)? "selected": ""}} value="1" >Active </option>
+                                    <option {{($customerData->status==0)? "selected": ""}} value="0">In Active</option>
+
+                            </select>
+                                <!-- <input value='{{$customerData->status}}' style="border-radius: 10px;" type="number" class="form-control" id="status"
+                                   name="customer_status" placeholder="status"> -->
                             </div>
                         </div>
+
                         <div class="d-flex align-items-end flex-column">
                             <div class="form-check form-check-flat form-check-primary ">
                                 <label class="form-check-label">
@@ -88,8 +101,10 @@
                                     me </label>
                             </div>
                             <div class="">
-                                <button style="border-radius: 10px;" type="submit" class="btn btn-primary mr-2 border border-light">Submit</button>
-                                    <a href="{{route('all_customer')}}" class="btn btn-warning mr-2 border border-light" style="border-radius: 10px;" type="cancel">Cancel</a>
+                            <button style="border-radius: 10px;" type="submit" class="btn btn-primary mr-2 border border-light">update</button>
+                            <a href="{{route('all_supplier')}}" class="btn btn-warning mr-2 border border-light" style="border-radius: 10px;" type="cancel">Cancel</a>
+                               
+                                
                             </div>
                         </div>
                     </form>
