@@ -63,7 +63,7 @@ Route::get('/customer_report', [CustomerController::class, 'customer_report'])->
 
 
 Route::get('/view_unit_form', [UnitController::class, 'index'])->name('units');
-// Route::patch('/due_customer', [UnitController::class, 'due_customer'])->name('due_customer');
+Route::patch('/add_unit', [UnitController::class, 'add_unit'])->name('add_unit');
 // Route::delete('/customer_report', [UnitController::class, 'customer_report'])->name('customer_report');
 
 

@@ -25,7 +25,7 @@
 
                     <br>
 
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="POST" action="{{route('add_unit')}}" enctype="multipart/form-data">
                         <div class="form-group row ">
                             <label for="unit" class="col-sm-2 col-form-label">Unit Name</label>
                             <div class="col-sm-10 ">
