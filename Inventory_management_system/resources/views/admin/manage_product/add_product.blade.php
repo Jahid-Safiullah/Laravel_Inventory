@@ -5,15 +5,6 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div style="border-radius: 25px;" class="card  shadow-lg p-3 mb-5 bg-body border border-info">
 
-
-                <!-- <div class="template-demo">
-
-                                  <button type="button" class="btn btn-outline-info btn-icon-text"> Print <i class="mdi mdi-printer btn-icon-append"></i>
-                                  </button>
-                                  <button type="button" class="btn btn-outline-warning btn-icon-text">
-                                    <i class="mdi mdi-reload btn-icon-prepend"></i> Reset </button>
-                                </div> -->
-
                 <div>
                     <button style="border-radius: 10px;" type="submit" class="btn btn-primary mr-2 border border-light"><i
                             class="fas fa-edit" style="color: #000000;"></i>Edit</button>
@@ -21,61 +12,56 @@
                 </div>
 
                 <div class="card-body">
+
                     <div style=" text-align: center;">
                         <div class="line"></div>
-                        <h3 class="card-title "> Add Supplier </h3>
+                        <h3 class="card-title "> Add Product </h3>
                         <div class="line"></div>
                     </div>
-
-
                     <br>
-                    <!-- <p class="card-description"> Horizontal form layout </p> -->
-                    <form class="forms-sample"  >
+
+                    <form class="forms-sample" method="POST" action="{{route('add_product')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group row " >
-                            <label for="supplier" class="col-sm-2 col-form-label">Supplier Name</label>
+                            <label for="Product" class="col-sm-2 col-form-label">Product Name</label>
                             <div class="col-sm-10 ">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="supplier"
-                                    placeholder="Supplier Name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Supplier Email</label>
-                            <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="email" class="form-control"
-                                    id="exampleInputEmail2" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
-                            <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="mobile"
-                                    placeholder="Mobile number">
+                                <input style="border-radius: 10px;" type="text" class="form-control" id="Product"
+                                  name="product_name"  placeholder="Product Name">
                             </div>
                         </div>
 
+                        <div class="input-group mb-3">
+                        <label for="Product" class="col-sm-2 col-form-label">Catagory Name</label>
+                            <select class="form-control" name="catagory_name" aria-label="Default select example" required>
+                                <option selected>Open this select menu</option>
+
+                                @foreach ($catagories as $catagory)
+                                    <option value="{{$catagory->catagory_name}}">{{$catagory->catagory_name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                      
                         <div class="form-group row">
-                            <label for="location" class="col-sm-2 col-form-label">Location</label>
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
                             <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="location"
-                                    placeholder="Location">
+                                <input style="border-radius: 10px;" type="file" class="form-control" id="image"
+                                   name="supplier_image" placeholder="image">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-sm-2 col-form-label">Address</label>
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-10">
-                                <input style="border-radius: 10px;" type="text" class="form-control" id="address"
-                                    placeholder="Address">
+                                <input style="border-radius: 10px;" type="number" class="form-control" id="status"
+                                   name="supplier_status" placeholder="status">
                             </div>
                         </div>
-
-
-
                         <div class="d-flex align-items-end flex-column">
                             <div class="form-check form-check-flat form-check-primary ">
                                 <label class="form-check-label">
-                                    <input style="border-radius: 10px;" type="checkbox" class="form-check-input"> Remember
-                                    me </label>
+                                    <input style="border-radius: 10px;" type="checkbox" class="form-check-input"> Remember me
+                                </label>
                             </div>
                             <div class="">
                                 <button style="border-radius: 10px;" type="submit"
@@ -88,10 +74,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
 @endsection

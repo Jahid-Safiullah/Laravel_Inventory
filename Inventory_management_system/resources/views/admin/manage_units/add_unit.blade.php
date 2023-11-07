@@ -9,7 +9,7 @@
 
 
                 <div>
-                    <a style="color: white" href="" style="border-radius: 20px; text-decoration:none" type="submit"
+                    <a style="color: white" href="{{route('all_units')}}" style="border-radius: 20px; text-decoration:none" 
                         class="btn btn-primary mr-2 border border-light">
                         <i class="fa-regular fa-eye" style="color: #070707;"></i>All Units</a>
 
@@ -25,7 +25,8 @@
 
                     <br>
 
-                    <form class="forms-sample" method="POST" action="{{route('add_unit')}}" enctype="multipart/form-data">
+                    <form class="forms-sample" method="post" action="{{route('add_unit')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group row ">
                             <label for="unit" class="col-sm-2 col-form-label">Unit Name</label>
                             <div class="col-sm-10 ">
@@ -42,10 +43,10 @@
                                 </label>
                             </div>
                             <div class="">
-                                <a href="" class="btn btn-primary mr-2 border border-light"
-                                    style="border-radius: 10px;" type="submit">Submit</a>
-                                <a href="" class="btn btn-warning mr-2 border border-light"
-                                    style="border-radius: 10px;" type="submit">Cancel</a>
+                            <button style="border-radius: 10px;" type="submit"
+                                    class="btn btn-primary mr-2 border border-light">Submit</button>
+                                <button style="border-radius: 10px;"
+                                    class="btn btn-warning border border-light">Cancel</button>
                             </div>
                         </div>
                     </form>

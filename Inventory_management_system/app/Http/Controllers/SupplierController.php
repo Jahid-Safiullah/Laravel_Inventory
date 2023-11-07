@@ -55,7 +55,6 @@ class SupplierController extends Controller
         $viewData->address=$request->supplier_address;
 
         $image=$request->supplier_image;
-
         if($image){
         $imagename=time().'.'.$image->getClientOriginalExtension();
         $request->supplier_image->move('supplier_image',$imagename);

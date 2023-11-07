@@ -130,7 +130,7 @@
 
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('add_catagories')}}">
+            <a class="nav-link" href="{{route('catagory')}}">
               <span class="menu-icon">
                 <i class="fa-solid fa-diagram-next" style="color: #0354e0;"></i>
               </span>
@@ -138,7 +138,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('all_product')}}">
+            <a class="nav-link" href="{{route('product')}}">
               <span class="menu-icon">
                 <i class="fa-brands fa-product-hunt" style="color: #dc00b7;"></i>
               </span>

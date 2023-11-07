@@ -1,65 +1,60 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="">
+<div  class="px-4 mb-4 "  style="">
 
-    <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Add Units</h4>
-                    <br>
-                    <!-- <p class="card-description"> Horizontal form layout </p> -->
-                    <form class="forms-sample">
-                      <div class="form-group row">
-                        <label for="exampleInputUsername2" class="col-sm-2 col-form-label">Unit Name</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
-                        </div>
-                      </div>
-                        <!-- <div class="form-group row">
-                          <label for="exampleInputEmail2" class="col-sm-2 col-form-label">Supplier Email</label>
-                          <div class="col-sm-9">
-                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
-                          </div>
-                        </div> -->
-                      <div class="form-group row">
-                        <label for="exampleInputMobile" class="col-sm-2 col-form-label">Unit Status</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputMobile" placeholder="Unit Status">
-                        </div>
-                      </div>
-                      <!-- <div class="form-group row">
-                        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
-                        </div>
-                      </div> -->
-                      <div class="d-flex align-items-end flex-column  col-sm-11" >
-                      <div class="form-check form-check-flat form-check-primary ">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> Remember me </label>
-                      </div>
-                      <div class="">
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <button class="btn btn-dark">Cancel</button>
-                      </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+    <h3 class="card-title "> All Units </h3>
 
-
-
-
-
-
-
+    <div  >
+       <form class="input-group mb-3 col-4 "  action="{{url('')}}" method="GET">
+          @csrf
+          <input name="Search_Supplier" style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Supplier name.." aria-label="Supplier name" aria-describedby="button-addon2" >
+          <button type="submit" style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
+      </form>
     </div>
+    <!-- <div class="">
+           <form>
+                @csrf
+                <input style="width:700px;  border-bottom-left-radius: 25px; border-top-left-radius: 25px;"  name="search" type="text" class="form-control" placeholder="Search Your Product...." aria-label="Search Your Product" aria-describedby="button-addon2">
+                <button style="border-bottom-right-radius: 25px; border-top-right-radius: 25px;" class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </form>
+          </div> -->
+
+
+</div>
+
+
+<div class="table-responsive border border-rounded " style="border-radius: 25px;">
+
+    <table class="table table-striped table-hover table-dark   " >
+        <thead class="table-info">
+          <tr >
+            <th  style="color:white" scope="col">SL.</th>
+            <th  style="color:white" scope="col">Unit Name</th>
+            <th  style="color:white" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($allUnitData as $data)
+          <tr>
+            <th scope="row">1</th>
+            <td>{{$data->name}}</td>
+            <td class="d-flex ">
+                <div class="pr-1">
+                    <a href="{{url('edit_unit',$data->id)}}" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i>Edit</a>
+                </div>
+                <div>
+                    <a href="" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i>Active</a>
+                </div>
+            </td>
+
+          </tr>
+          @endforeach
+
+        </tbody>
+      </table>
+</div>
+
 @endsection
+
+

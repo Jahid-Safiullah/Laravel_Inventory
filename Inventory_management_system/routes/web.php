@@ -63,15 +63,23 @@ Route::get('/customer_report', [CustomerController::class, 'customer_report'])->
 
 
 Route::get('/view_unit_form', [UnitController::class, 'index'])->name('units');
-Route::patch('/add_unit', [UnitController::class, 'add_unit'])->name('add_unit');
-// Route::delete('/customer_report', [UnitController::class, 'customer_report'])->name('customer_report');
+Route::post('/add_unit', [UnitController::class, 'add_unit'])->name('add_unit');
+Route::get('/all_units', [UnitController::class, 'all_units'])->name('all_units');
+Route::get('/edit_unit/{id}', [UnitController::class, 'edit_unit'])->name('edit_unit');
+Route::post('/update_unit/{id}', [UnitController::class, 'update_unit'])->name('update_unit');
 
 
-Route::get('/add_catagories', [CatagoryController::class, 'add_catagories'])->name('add_catagories');
+
+Route::get('/view_catagory_form', [CatagoryController::class, 'index'])->name('catagory');
+Route::post('/add_catagory', [CatagoryController::class, 'add_catagory'])->name('add_catagory');
 Route::get('/all_catagories', [CatagoryController::class, 'all_catagories'])->name('all_catagories');
-// Route::delete('/customer_report', [CatagoryController::class, 'customer_report'])->name('customer_report');
+Route::get('/edit_catagory/{id}', [CatagoryController::class, 'edit_catagory'])->name('edit_catagory');
+Route::post('/update_catagory/{id}', [CatagoryController::class, 'update_catagory'])->name('update_catagory');
 
 
+
+Route::get('/view_product_form', [ProductController::class, 'index'])->name('product');
+Route::post('/add_product', [ProductController::class, 'add_product'])->name('add_product');
 Route::get('/all_product', [ProductController::class, 'all_product'])->name('all_product');
-// Route::patch('/edit_supplier', [ProductController::class, 'edit_supplier'])->name('edit_supplier');
-// Route::delete('/delete_supplier', [ProductController::class, 'delete_supplier'])->name('delete_supplier');
+Route::get('/edit_product/{id}', [ProductController::class, 'edit_product'])->name('edit_product');
+Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');
