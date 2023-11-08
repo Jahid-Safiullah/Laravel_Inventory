@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 08:00 AM
+-- Generation Time: Nov 08, 2023 at 08:21 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -34,6 +34,14 @@ CREATE TABLE `catagories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `catagories`
+--
+
+INSERT INTO `catagories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fruit', '2023-11-06 23:22:50', '2023-11-07 00:35:50'),
+(2, 'Rice', '2023-11-08 01:12:27', '2023-11-08 01:12:27');
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +66,8 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Hanif khah', 'jhaid@gmial.com', '065416515622', 'mohajkli', '1699161756.webp', 1, '2023-11-04 21:06:27', '2023-11-04 23:22:36'),
-(2, 'jahangir alam', 'jahangir@gmail.com', '01521312655', 'puran Dhaka', '1699166703.webp', 0, '2023-11-05 00:45:04', '2023-11-05 00:45:24');
+(2, 'jahangir alam', 'jahangir@gmail.com', '01521312655', 'puran Dhaka', '1699166703.webp', 0, '2023-11-05 00:45:04', '2023-11-05 00:45:24'),
+(3, 'bristy', 'bristy@gamil.com', '0152131265500', 'doyagonj', '1699253623.jpg', 1, '2023-11-06 00:53:43', '2023-11-06 00:54:24');
 
 -- --------------------------------------------------------
 
@@ -145,12 +154,21 @@ CREATE TABLE `products` (
   `name` varchar(255) NOT NULL,
   `catagory` varchar(255) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `supplier_name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `sku` varchar(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `catagory`, `unit`, `description`, `image`, `sku`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Banana', 'Fruit', 'KG', 'this is most froutfull', '1699422352.png', 'D400', 1, '2023-11-07 23:45:52', '2023-11-07 23:45:52'),
+(2, 'Guava', 'Fruit', 'Pcs', 'this is most froutfull', '1699422676.jpg', 'D401', 1, '2023-11-07 23:51:16', '2023-11-07 23:51:16');
 
 -- --------------------------------------------------------
 
@@ -176,7 +194,8 @@ CREATE TABLE `suppliers` (
 
 INSERT INTO `suppliers` (`id`, `name`, `email`, `phone`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'jahid safiullah', 'jahid@gmail.com', '01255554456', 'ajimpur, dhaka', '1699068148.webp', 1, '2023-11-03 21:22:32', '2023-11-04 00:12:34'),
-(2, 'jahid', 'jahid@gmail.com', '01255554456', 'Mohammadpu', '1699075957.png', 1, '2023-11-03 21:26:00', '2023-11-03 23:32:37');
+(2, 'jahid', 'jahid@gmail.com', '01255554456', 'Mohammadpu', '1699075957.png', 1, '2023-11-03 21:26:00', '2023-11-03 23:32:37'),
+(3, 'ali', 'ali@gmail.com', '0125555', 'dhaka', '1699253421.jpg', 1, '2023-11-06 00:50:21', '2023-11-06 00:51:32');
 
 -- --------------------------------------------------------
 
@@ -190,6 +209,14 @@ CREATE TABLE `units` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'KG', '2023-11-06 22:11:26', '2023-11-06 22:59:15'),
+(2, 'Pcs', '2023-11-07 23:50:10', '2023-11-07 23:50:10');
 
 -- --------------------------------------------------------
 
@@ -286,13 +313,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `catagories`
 --
 ALTER TABLE `catagories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -316,19 +343,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
