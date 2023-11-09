@@ -96,8 +96,10 @@
                             <div class="">
                                 <button style="border-radius: 10px;" type="submit"
                                     class="btn btn-primary mr-2 border border-light">Submit</button>
-                                <button style="border-radius: 10px;"
-                                    class="btn btn-warning border border-light">Cancel</button>
+                                <a href="{{route('all_product')}}" style="border-radius: 10px;" class="btn btn-danger mr-2 border border-light">
+                                    <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                                 Cancel
+                                </a>
                             </div>
                         </div>
                     </form>

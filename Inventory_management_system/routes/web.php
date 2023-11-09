@@ -83,3 +83,4 @@ Route::post('/add_product', [ProductController::class, 'add_product'])->name('ad
 Route::get('/all_product', [ProductController::class, 'all_product'])->name('all_product');
 Route::get('/edit_product/{id}', [ProductController::class, 'edit_product'])->name('edit_product');
 Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');
+Route::get('/delete_product/{id}', [ProductController::class, 'delete_product']);

@@ -1,11 +1,16 @@
 @extends('admin.layout')
 
 @section('content')
+
+<div style="text-align:end; padding-bottom: 25px;">
+    <a href="{{route('product')}}" style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-circle-plus" style="color: #192843;"></i>add Product</a>
+</div>
+
 <div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
 
     <h3 class="card-title "> All Product </h3>
 
-    <div class="input-group mb-3 col-4 "  >
+    <div class="input-group mb-3  "  >
         <input style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Product name.." aria-label="Product name" aria-describedby="button-addon2" >
         <button style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
     </div>
@@ -49,7 +54,7 @@
                     <a href="" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i>Active</a>
                 </div>
                 <div>
-                    <a href="" style="border-radius: 10px;" class="btn btn-danger mr-2 border border-light"><i class="fa-solid fa-trash" style="color: #000000;"></i>Delete</a>
+                    <a href="{{url('delete_product',$data->id)}}" style="border-radius: 10px;" class="btn btn-danger mr-2 border border-light"><i class="fa-solid fa-trash" style="color: #000000;"></i>Delete</a>
                 </div>
             </td>
 

@@ -79,6 +79,17 @@ class ProductController extends Controller
         // return view ('admin.manage_suppliers.edit_supplier',compact('viewData'));
     }
 
+   
+
+    public function delete_product($id){
+          
+            $productData= Product::find($id);
+            $productData->delete();
+            return back();
+            
+    }
+    
+
 
 
     public function searchProduct (Request $request){
