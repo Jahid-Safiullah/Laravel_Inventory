@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 08:21 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Nov 09, 2023 at 09:34 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,8 +39,8 @@ CREATE TABLE `catagories` (
 --
 
 INSERT INTO `catagories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Fruit', '2023-11-06 23:22:50', '2023-11-07 00:35:50'),
-(2, 'Rice', '2023-11-08 01:12:27', '2023-11-08 01:12:27');
+(1, 'fruit', '2023-11-09 13:36:34', '2023-11-09 13:36:34'),
+(2, 'rice', '2023-11-09 13:36:44', '2023-11-09 13:36:44');
 
 -- --------------------------------------------------------
 
@@ -59,15 +59,6 @@ CREATE TABLE `customers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Hanif khah', 'jhaid@gmial.com', '065416515622', 'mohajkli', '1699161756.webp', 1, '2023-11-04 21:06:27', '2023-11-04 23:22:36'),
-(2, 'jahangir alam', 'jahangir@gmail.com', '01521312655', 'puran Dhaka', '1699166703.webp', 0, '2023-11-05 00:45:04', '2023-11-05 00:45:24'),
-(3, 'bristy', 'bristy@gamil.com', '0152131265500', 'doyagonj', '1699253623.jpg', 1, '2023-11-06 00:53:43', '2023-11-06 00:54:24');
 
 -- --------------------------------------------------------
 
@@ -102,15 +93,17 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(10, '2014_10_12_000000_create_users_table', 1),
-(11, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(12, '2019_08_19_000000_create_failed_jobs_table', 1),
-(13, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(14, '2023_11_01_124650_create_suppliers_table', 1),
-(15, '2023_11_01_125232_create_customers_table', 1),
-(16, '2023_11_01_125308_create_units_table', 1),
-(17, '2023_11_01_125502_create_catagories_table', 1),
-(18, '2023_11_01_125520_create_products_table', 1);
+(19, '2014_10_12_000000_create_users_table', 1),
+(20, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(21, '2019_08_19_000000_create_failed_jobs_table', 1),
+(22, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(23, '2023_11_01_124650_create_suppliers_table', 1),
+(24, '2023_11_01_125232_create_customers_table', 1),
+(25, '2023_11_01_125308_create_units_table', 1),
+(26, '2023_11_01_125502_create_catagories_table', 1),
+(27, '2023_11_01_125520_create_products_table', 1),
+(28, '2023_11_09_182406_create_purchases_table', 1),
+(29, '2023_11_09_183431_create_purchase_products_table', 1);
 
 -- --------------------------------------------------------
 
@@ -152,12 +145,12 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `catagory` varchar(255) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `sku` varchar(50) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
+  `sku` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -166,9 +159,47 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `catagory`, `unit`, `description`, `image`, `sku`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Banana', 'Fruit', 'KG', 'this is most froutfull', '1699422352.png', 'D400', 1, '2023-11-07 23:45:52', '2023-11-07 23:45:52'),
-(2, 'Guava', 'Fruit', 'Pcs', 'this is most froutfull', '1699422676.jpg', 'D401', 1, '2023-11-07 23:51:16', '2023-11-07 23:51:16');
+INSERT INTO `products` (`id`, `name`, `description`, `catagory`, `unit`, `image`, `status`, `sku`, `created_at`, `updated_at`) VALUES
+(1, 'banana', 'this is testy', 'fruit', 'KG', '1699558654.jpg', 1, 'd100', '2023-11-09 13:37:34', '2023-11-09 13:37:34'),
+(2, 'apple', 'this is testy', 'fruit', 'KG', '1699558684.jpg', 1, 'd1001', '2023-11-09 13:38:04', '2023-11-09 13:38:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchases`
+--
+
+CREATE TABLE `purchases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `suppliers_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_products`
+--
+
+CREATE TABLE `purchase_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `purchase_code` varchar(255) DEFAULT NULL,
+  `product_id` int(11) NOT NULL,
+  `buy_price` varchar(255) NOT NULL,
+  `sell_price` varchar(255) DEFAULT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `total_price` varchar(255) NOT NULL,
+  `dis_price` varchar(255) DEFAULT NULL,
+  `paid_price` varchar(255) DEFAULT NULL,
+  `date` varchar(255) NOT NULL,
+  `month` varchar(255) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -193,9 +224,8 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `name`, `email`, `phone`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'jahid safiullah', 'jahid@gmail.com', '01255554456', 'ajimpur, dhaka', '1699068148.webp', 1, '2023-11-03 21:22:32', '2023-11-04 00:12:34'),
-(2, 'jahid', 'jahid@gmail.com', '01255554456', 'Mohammadpu', '1699075957.png', 1, '2023-11-03 21:26:00', '2023-11-03 23:32:37'),
-(3, 'ali', 'ali@gmail.com', '0125555', 'dhaka', '1699253421.jpg', 1, '2023-11-06 00:50:21', '2023-11-06 00:51:32');
+(1, 'Rakib Ahsan', 'r@gamil.com', '05648541', 'Mirpur', '1699558491.jpg', 1, '2023-11-09 13:34:51', '2023-11-09 13:34:51'),
+(2, 'jahid', 'j@gamil.com', '0.54651231', 'Mohammadpur', '1699558524.jpg', 1, '2023-11-09 13:35:24', '2023-11-09 13:35:24');
 
 -- --------------------------------------------------------
 
@@ -215,8 +245,9 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'KG', '2023-11-06 22:11:26', '2023-11-06 22:59:15'),
-(2, 'Pcs', '2023-11-07 23:50:10', '2023-11-07 23:50:10');
+(1, 'KG', '2023-11-09 13:35:47', '2023-11-09 13:35:47'),
+(2, 'Pies', '2023-11-09 13:35:56', '2023-11-09 13:35:56'),
+(3, 'L', '2023-11-09 13:36:16', '2023-11-09 13:36:16');
 
 -- --------------------------------------------------------
 
@@ -287,6 +318,18 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `purchases`
+--
+ALTER TABLE `purchases`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `purchase_products`
+--
+ALTER TABLE `purchase_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -319,7 +362,7 @@ ALTER TABLE `catagories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -331,7 +374,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -346,16 +389,28 @@ ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `purchases`
+--
+ALTER TABLE `purchases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `purchase_products`
+--
+ALTER TABLE `purchase_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
