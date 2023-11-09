@@ -78,7 +78,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('index_supplier')}}">Add Supplier</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('all_supplier')}}">All Supplier</a></li>
-               
+
               </ul>
             </div>
           </li>
@@ -156,7 +156,7 @@
             </a>
             <div class="collapse" id="ui-Purchase">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages">All Purchase</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('all_purchase')}}">All Purchase</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages">Aproval Purchase</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages">Daily Purchase Report</a></li>
               </ul>

@@ -36,9 +36,12 @@
           </tr>
         </thead>
         <tbody>
+            @php
+                $sl=1;
+            @endphp
           @foreach($allProductData as $data)
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{$sl++}}</th>
             <td>{{$data->sku}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->description}}</td>
@@ -60,7 +63,7 @@
 
           </tr>
           @endforeach
-         
+
         </tbody>
       </table>
 </div>

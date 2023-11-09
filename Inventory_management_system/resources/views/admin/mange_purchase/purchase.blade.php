@@ -1,148 +1,110 @@
 @extends('admin.layout')
 
 @section('content')
+    <div class="">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div style="border-radius: 25px;" class="card  shadow-lg p-3 mb-5 bg-body border border-info">
 
+                <div>
+                    <a style="color: white" href="" style="border-radius: 20px; text-decoration:none"
+                        class="btn btn-primary mr-2 border border-light">
+                        <i class="fa-regular fa-eye" style="color: #070707;"></i>All Purchase Product</a>
 
-<div class="col-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Horizontal Two column</h4>
-                    <form class="form-sample">
-                      <p class="card-description"> Personal info </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>Category1</option>
-                                <option>Category2</option>
-                                <option>Category3</option>
-                                <option>Category4</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="card-description"> Address </p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                              <select class="form-control">
-                                <option>America</option>
-                                <option>Italy</option>
-                                <option>Russia</option>
-                                <option>Britain</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
                 </div>
-              </div>
 
-              @endsection
+                <div class="card-body">
+
+                    <div style=" text-align: center;">
+                        <div class="line"></div>
+                        <h3 class="card-title ">Purchase Product </h3>
+                        <div class="line"></div>
+                    </div>
+                    <br>
+
+                    <form class="forms-sample" method="POST" action="{{route('purchase_product')}}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row " >
+                            <label for="Product" class="col-sm-2 col-form-label">Product Name</label>
+                            <div class="col-sm-10 ">
+                                <input style="border-radius: 10px;" type="text" class="form-control" id="Product"
+                                  name="product_name"  placeholder="Product Name">
+                            </div>
+                        </div>
+                        <div class="form-group row " >
+                            <label for="Product_des" class="col-sm-2 col-form-label">Product Description</label>
+                            <div class="col-sm-10 ">
+                                <input id="Product_des" style="border-radius: 10px;" type="text" class="form-control" id="Product"
+                                  name="product_des"  placeholder="Product Description">
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                        <label for="Catagory" class="col-sm-2 col-form-label">Catagory Name</label>
+                            <select style="border-radius: 10px;"  class="form-control" name="catagory_name" aria-label="Default select example" required>
+                                <option selected>Open this select menu</option>
+
+                                @foreach ($catagoryData as $catagory)
+                                    <option value="{{$catagory->name}}">{{$catagory->name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                        <label for="Unit" class="col-sm-2 col-form-label">Unit</label>
+                            <select style="border-radius: 10px;" class="form-control" name="unit_name" aria-label="Default select example" required>
+                                <option selected>Open this select menu</option>
+
+                                @foreach ($unitData as $unit)
+                                    <option value="{{$unit->name}}">{{$unit->name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                                <input style="border-radius: 10px;" type="file" class="form-control" id="image"
+                                   name="product_image" placeholder="image">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10 " >
+                                <select name="status" class="form-control"  style="border-radius: 10px; height:35px; background:#2A3038; color:azure"  id="status">
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">In Active</option>
+
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="SKU" class="col-sm-2 col-form-label">SKU</label>
+                            <div class="col-sm-10">
+                                <input style="border-radius: 10px;" type="text" class="form-control" id="SKU"
+                                   name="sku" placeholder="SKU">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end flex-column">
+                            <div class="form-check form-check-flat form-check-primary ">
+                                <label class="form-check-label">
+                                    <input style="border-radius: 10px;" type="checkbox" class="form-check-input"> Remember me
+                                </label>
+                            </div>
+                            <div class="">
+                                <button style="border-radius: 10px;" type="submit"
+                                    class="btn btn-primary mr-2 border border-light">Submit</button>
+                                <a href="{{route('all_product')}}" style="border-radius: 10px;" class="btn btn-danger mr-2 border border-light">
+                                    <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                                 Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

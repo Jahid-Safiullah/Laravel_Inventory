@@ -80,7 +80,9 @@ Route::post('/update_catagory/{id}', [CatagoryController::class, 'update_catagor
 
 Route::get('/view_product_form', [ProductController::class, 'index'])->name('product');
 Route::post('/add_product', [ProductController::class, 'add_product'])->name('add_product');
-Route::get('/all_product', [ProductController::class, 'all_product'])->name('all_product');
+Route::get('/all_purchase', [ProductController::class, 'all_purchase'])->name('all_purchase');
 Route::get('/edit_product/{id}', [ProductController::class, 'edit_product'])->name('edit_product');
 Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');
 Route::get('/delete_product/{id}', [ProductController::class, 'delete_product']);
+
+
