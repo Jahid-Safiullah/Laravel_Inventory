@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\PurchaseProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,9 +81,20 @@ Route::post('/update_catagory/{id}', [CatagoryController::class, 'update_catagor
 
 Route::get('/view_product_form', [ProductController::class, 'index'])->name('product');
 Route::post('/add_product', [ProductController::class, 'add_product'])->name('add_product');
-Route::get('/all_purchase', [ProductController::class, 'all_purchase'])->name('all_purchase');
+Route::get('/all_product', [ProductController::class, 'all_product'])->name('all_product');
 Route::get('/edit_product/{id}', [ProductController::class, 'edit_product'])->name('edit_product');
 Route::post('/update_product/{id}', [ProductController::class, 'update_product'])->name('update_product');
 Route::get('/delete_product/{id}', [ProductController::class, 'delete_product']);
 
+
+Route::get('/view_purchase_form', [PurchaseProductController::class, 'index'])->name('purchase');
+Route::post('/add_purchase_order', [PurchaseProductController::class, 'add_purchase_order'])->name('add_purchase_order');
+
+Route::get('/add_cart', [PurchaseProductController::class, 'add_cart'])->name('add_cart');
+
+
+// Route::get('/all_purchase', [PurchaseProductController::class, 'all_purchase'])->name('all_purchase');
+// Route::get('/edit_product/{id}', [PurchaseProductController::class, 'edit_product'])->name('edit_product');
+// Route::post('/update_product/{id}', [PurchaseProductController::class, 'update_product'])->name('update_product');
+// Route::get('/delete_product/{id}', [PurchaseProductController::class, 'delete_product']);
 

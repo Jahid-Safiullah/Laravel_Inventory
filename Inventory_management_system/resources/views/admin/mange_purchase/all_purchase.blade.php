@@ -2,11 +2,99 @@
 
 @section('content')
     <div class="">
+        <div class="input-group mb-3">
+        <label class="input-group-text" for="startDate">Supplier</label>
+          <input id="startDate" class="" type="date" />
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>Choose Supplier..</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Product</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>Choose Product..</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
 
-    <div>this is  all purchase</div>
+
+<div style="text-align:end; padding-bottom: 25px;">
+    <a href="" style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-circle-plus" style="color: #192843;"></i>add Purchase</a>
+</div>
+
+<div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
+
+    <h3 class="card-title "> All Purchase Product </h3>
+{{--
+    <div class="input-group mb-3  "  >
+        <input style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Product name.." aria-label="Product name" aria-describedby="button-addon2" >
+        <button style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
+    </div> --}}
 
 
+</div>
 
+
+<div class="table-responsive border border-rounded " style="border-radius: 25px;">
+
+    <table class="table table-striped table-hover table-dark   " >
+        <thead class="table-info">
+          <tr >
+            <th  style="color:white" scope="col">SL.</th>
+            <th  style="color:white" scope="col">Product Name</th>
+            <th  style="color:white" scope="col">Product Description</th>
+            <th  style="color:white" scope="col">Catagory</th>
+            <th  style="color:white" scope="col">Unit</th>
+            <th  style="color:white" scope="col">Unit buy Price</th>
+            <th  style="color:white" scope="col">Unit sell Price</th>
+            <th  style="color:white" scope="col">Quntity</th>
+            <th  style="color:white" scope="col">Toral Price</th>
+            <th  style="color:white" scope="col">discount Price</th>
+            <th  style="color:white" scope="col">Image</th>
+            <th  style="color:white" scope="col">Status</th>
+            <th  style="color:white" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            @php
+                $sl=1;
+            @endphp
+          {{-- @foreach($allProductData as $data) --}}
+          <tr>
+            <th scope="row">{{$sl++}}</th>
+            {{-- <td>{{$data->sku}}</td>
+            <td>{{$data->name}}</td>
+            <td>{{$data->description}}</td>
+            <td>{{$data->catagory}}</td>
+            <td>{{$data->unit}}</td>
+            <td>{{$data->image}}</td>
+            <td>{{$data->status}}</td> --}}
+            <td class="d-flex " style="text-align: center;">
+                <div class="">
+                    <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>
+                </div>
+                <div>
+                    <a href="" style="border-radius: 10px;" class="btn btn-success mr-2 border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i></a>
+                </div>
+                <div>
+                    <a href="" style="border-radius: 10px;" class="btn btn-danger mr-2 border border-light"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
+                </div>
+            </td>
+
+          </tr>
+          {{-- @endforeach --}}
+
+        </tbody>
+      </table>
+</div>
 
 
 
