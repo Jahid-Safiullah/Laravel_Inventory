@@ -2,16 +2,23 @@
 
 @section('content')
     <div class="">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-
-        {{-- <div class="input-group mb-3">
+        <div class="input-group mb-3">
             <label class="input-group-text" for="startDate">Supplier</label>
               <input name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" />
-            </div> --}}
+            </div>
 
 
-
-            {{-- <div class="input-group mb-3">
+            <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
 
                 <select  name="supplier_id" class="form-select" id="inputGroupSelect01">
@@ -21,18 +28,19 @@
                     @endforeach
 
                   </select>
-              </div> --}}
+              </div>
 
              <form action="{{url('add_cart')}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <button class="btn btn-secondary" type="submit">Submit</button>
-                    <select  name="add_cart_product" class="form-select" id="inputGroupSelect01">
+                    <select  name="product_id" class="form-select" id="inputGroupSelect01">
                         <option selected>Choose Product..</option>
+
                       @foreach ($productData as $p_data)
                         <option   value="{{$p_data->id}}">{{$p_data->name}}</option>
-
                       @endforeach
+
                     </select>
                   </div>
             </form>
@@ -79,6 +87,7 @@
         <tbody>
             @php
                 $sl=1;
+                $totalPrice=0;
             @endphp
           @foreach($purchase_product_Data as $data)
           <tr>
@@ -91,7 +100,7 @@
             <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price" value=""  class="" type="text" /> </td>
             <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price" value=""  class="" type="text" /> </td>
             <td> <input style="width:100px; height:40px;border-radius: 10px;" name="quantity" value=""  min="1" class="" type="number" /> </td>
-            <td>200</td>
+            <td>20</td>
             <td>{{$data->image}}</td>
 
             <td class="d-flex " style="text-align: center;">
@@ -112,7 +121,7 @@
         </tbody>
         <tfoot style="width: 100%; border-top:double rgb(202, 69, 255) 5px">
             <th colspan="6">Total</th>
-            <td></td>
+            <td>$totalPrice=$totalPrice+$data-></td>
             <td></td>
             <td></td>
             <td>

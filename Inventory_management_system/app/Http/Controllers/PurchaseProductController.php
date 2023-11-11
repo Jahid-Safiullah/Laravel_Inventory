@@ -8,6 +8,7 @@ use App\Models\Supplier;
 use APP\Models\User;
 use App\Models\Cart;
 use DB;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 
@@ -20,6 +21,9 @@ class PurchaseProductController extends Controller
         ->get();
         return view('admin\mange_purchase\purchase',compact('supplierData','productData','purchase_product_Data'));
     }
+
+
+
     public function add_purchase_order(Request $request){
         // dd($request);
         // echo"<pre>";
@@ -27,22 +31,49 @@ class PurchaseProductController extends Controller
         // exit();
         // $purchaseData=new Purchase;
         // $purchaseData->suppliers_id=$request->supplier_id;
-        
+
         // $purchaseData=new Cart;
         // $purchaseData->product_id=$request->add_cart_product;
 
-        $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
-                                ->get();
+        // $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
+        //                         ->get();
+
         // dd($purchase_product_Data);
         // $purchase_product_Data->save();
         // return redirect()->route('add_purchase_order');
     }
+
+
+
+
+
     public function add_cart(Request $request){
+        // dd($request->all());
+        $request->validate([
+
+            // 'add_cart_product' => 'required|exists:products,id',
+            'product_id' => [
+                'required',
+                'exists:products,id',
+                Rule::unique('Carts')->where(function ($query) use ($request) {
+                    return $query
+                                //  ->where('user_id', auth()->id())
+                                 ->where('product_id', $request->input('product_id'))
+                                 ->where('created_at', '>', now()->subHours(24)); // Adjust the time frame as needed
+                }),
+            ],
+            // Other validation rules for your form fields
+        ]);
         $purchaseData=new Cart;
-        $purchaseData->product_id=$request->add_cart_product;
+        $purchaseData->product_id=$request->product_id;
         // dd($purchaseData);
-        $purchaseData->save();
-         return redirect()->back();
+
+
+            $purchaseData->save();
+            return redirect()->back();
+
+
+
     }
 
 
