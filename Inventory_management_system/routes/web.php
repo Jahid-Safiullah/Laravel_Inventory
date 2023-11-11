@@ -90,7 +90,9 @@ Route::get('/delete_product/{id}', [ProductController::class, 'delete_product'])
 Route::get('/view_purchase_form', [PurchaseProductController::class, 'index'])->name('purchase');
 Route::post('/add_purchase_order', [PurchaseProductController::class, 'add_purchase_order'])->name('add_purchase_order');
 
-Route::get('/add_cart', [PurchaseProductController::class, 'add_cart'])->name('add_cart');
+
+//for purchase product--
+Route::post('/add_cart', [PurchaseProductController::class, 'add_cart']);
 
 
 // Route::get('/all_purchase', [PurchaseProductController::class, 'all_purchase'])->name('all_purchase');

@@ -24,6 +24,7 @@
               </div> --}}
 
              <form action="{{url('add_cart')}}" method="post">
+                @csrf
                 <div class="input-group mb-3">
                     <button class="btn btn-secondary" type="submit">Submit</button>
                     <select  name="add_cart_product" class="form-select" id="inputGroupSelect01">
@@ -79,7 +80,7 @@
             @php
                 $sl=1;
             @endphp
-          @foreach($productData as $data)
+          @foreach($purchase_product_Data as $data)
           <tr>
             <th scope="row">{{$sl++}}</th>
 

@@ -6,6 +6,8 @@ use App\Models\Purchase_product;
 use App\Models\Product;
 use App\Models\Supplier;
 use APP\Models\User;
+use App\Models\Cart;
+use DB;
 use Illuminate\Http\Request;
 
 
@@ -14,26 +16,33 @@ class PurchaseProductController extends Controller
     public function index(){
         $supplierData=Supplier::all();
         $productData=Product::all();
-        return view('admin\mange_purchase\purchase',compact('supplierData','productData'));
+        $purchase_product_Data=DB::table('Carts')->join('products', 'carts.product_id', '=', 'products.id')
+        ->get();
+        return view('admin\mange_purchase\purchase',compact('supplierData','productData','purchase_product_Data'));
     }
     public function add_purchase_order(Request $request){
         // dd($request);
         // echo"<pre>";
         // print_r($request);
         // exit();
-        $purchaseData=new Purchase;
-        $purchaseData->suppliers_id=$request->supplier_id;
-        $purchase_product_Data=new Purchase_product;
-        $purchase_product_Data->product_catagory=$purchaseData->id;
-        // $purchase_product_Data->join('contacts', 'Purchase_product.id', '=', 'contacts.user_id')// joining the contacts table , where user_id and contact_user_id are same
-        // ->select('users.*', 'contacts.phone')
-        // ->get();
+        // $purchaseData=new Purchase;
+        // $purchaseData->suppliers_id=$request->supplier_id;
+        
+        // $purchaseData=new Cart;
+        // $purchaseData->product_id=$request->add_cart_product;
+
+        $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
+                                ->get();
+        // dd($purchase_product_Data);
+        // $purchase_product_Data->save();
+        // return redirect()->route('add_purchase_order');
+    }
+    public function add_cart(Request $request){
+        $purchaseData=new Cart;
+        $purchaseData->product_id=$request->add_cart_product;
         // dd($purchaseData);
         $purchaseData->save();
-        return redirect()->route('add_purchase_order');
-    }
-    public function add_cart(){
-
+         return redirect()->back();
     }
 
 
