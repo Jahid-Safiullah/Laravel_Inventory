@@ -9,6 +9,8 @@ use APP\Models\User;
 use App\Models\Cart;
 use DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -24,12 +26,50 @@ class PurchaseProductController extends Controller
 
 
 
-    public function add_purchase_order(Request $request){
+    public function submit_purchase(Request $request){
         // dd($request);
         // echo"<pre>";
         // print_r($request);
         // exit();
+        $currentDate = Carbon::now();
+        $totalPrice=$request->buying_price*$request->quantity;
+        $orderId =Str::uuid();
+        $cartDatas=cart::all();
+        foreach($cartDatas as $cartData){
+            $purchase_product_Tabel=new Purchase_product;
+            $purchase_product_Tabel->purchase_code= $orderId;
+            $purchase_product_Tabel->purchases_id= $request->supplier_id;
+            $purchase_product_Tabel->product_id=   $cartData->product_id;
+            $purchase_product_Tabel->buy_price=  $request->buying_price;
+            $purchase_product_Tabel->sell_price=  $request->selling_price;
+            $purchase_product_Tabel->quantity= $request->quantity;
+            $purchase_product_Tabel->total_price=  $totalPrice;
+            // $purchase_product_Tabel->dis_price= $request->dis_price;
+            // $purchase_product_Tabel->paid_price= $request->paid_price;
+            $purchase_product_Tabel->date= $request->date;
+            $purchase_product_Tabel->month= $currentDate->format('m');
+            $purchase_product_Tabel->year= $currentDate->format('Y');
+          
+            $purchase_product_Tabel->save();
+
+
+//for deleting data from cart table which are added in order table.
+            $cart_id=$cartData->id;
+            $delete_cart_id=Cart::find($cart_id);
+            $delete_cart_id->delete();
+
+        }
+        return redirect()->back()->with('message','Product Added Successfully');
+        
+
+        
         // $purchaseData=new Purchase;
+        // $purchaseData=new Purchase_product;
+
+        // $purchaseData->suppliers_id=$request->supplier_id;
+        // $purchaseData->suppliers_id=$request->supplier_id;
+        // $purchaseData->suppliers_id=$request->supplier_id;
+        // $purchaseData->suppliers_id=$request->supplier_id;
         // $purchaseData->suppliers_id=$request->supplier_id;
 
         // $purchaseData=new Cart;

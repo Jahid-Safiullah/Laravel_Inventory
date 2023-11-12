@@ -88,7 +88,7 @@ Route::get('/delete_product/{id}', [ProductController::class, 'delete_product'])
 
 
 Route::get('/view_purchase_form', [PurchaseProductController::class, 'index'])->name('purchase');
-Route::post('/add_purchase_order', [PurchaseProductController::class, 'add_purchase_order'])->name('add_purchase_order');
+Route::post('/submit_purchase', [PurchaseProductController::class, 'submit_purchase'])->name('submit_purchase');
 
 
 //for purchase product--

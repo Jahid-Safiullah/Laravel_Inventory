@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->timestamps()->nullable();
+            $table->timestamps();
 
             $table->unique([ 'product_id', 'created_at']);
         });

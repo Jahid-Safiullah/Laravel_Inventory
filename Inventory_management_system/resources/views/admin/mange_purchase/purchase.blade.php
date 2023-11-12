@@ -12,54 +12,39 @@
         </div>
     @endif
 
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="startDate">Supplier</label>
-              <input name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" />
-            </div>
 
-
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
-
-                <select  name="supplier_id" class="form-select" id="inputGroupSelect01">
-                        <option selected>Choose Supplier..</option>
-                    @foreach ($supplierData as $data)
-                        <option value="{{$data->id}}">{{$data->name}}</option>
-                    @endforeach
-
-                  </select>
-              </div>
-
-             <form action="{{url('add_cart')}}" method="post">
+        <form action="{{url('add_cart')}}" method="post">
                 @csrf
-                <div class="input-group mb-3">
-                    <button class="btn btn-secondary" type="submit">Submit</button>
-                    <select  name="product_id" class="form-select" id="inputGroupSelect01">
+            <div class="input-group mb-3" style="height:40px; ">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                <select  name="product_id" class="form-select" id="inputGroupSelect01">
                         <option selected>Choose Product..</option>
 
                       @foreach ($productData as $p_data)
                         <option   value="{{$p_data->id}}">{{$p_data->name}}</option>
                       @endforeach
+                </select>
+            </div>
+        </form>
 
-                    </select>
-                  </div>
-            </form>
+        
+             
 
-            {{-- <div style="text-align:end; padding-bottom: 25px;">
+            <!--  <div style="text-align:end; padding-bottom: 25px;">
                    <button style="border-radius: 10px;">
                     <a type="submit"  class="btn btn-primary border border-light"><i class="fa-solid fa-circle-plus" style="color: #192843;"></i>add Purchase</a>
                    </button>
-            </div> --}}
+            </div>  -->
 
 
 <div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
 
     <h3 class="card-title "> All Purchase Product </h3>
-{{--
-    <div class="input-group mb-3  "  >
+
+    <!-- <div class="input-group mb-3  "  >
         <input style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Product name.." aria-label="Product name" aria-describedby="button-addon2" >
         <button style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
-    </div> --}}
+    </div>  -->
 
 
 </div>
@@ -67,7 +52,10 @@
 
 <div class="table-responsive border border-rounded " style="border-radius: 25px;">
 
-    <table class="table table-striped table-hover table-dark   " >
+ <form action="{{route('submit_purchase')}}" method="post"  enctype="multipart/form-data">
+    @csrf
+
+ <table class="table table-striped table-hover table-dark   " >
         <thead class="table-info">
           <tr >
             <th  style="color:white" scope="col">SL.</th>
@@ -97,41 +85,71 @@
 
             <td>{{$data->catagory}}</td>
             <td>{{$data->unit}}</td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price" value=""  class="" type="text" /> </td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price" value=""  class="" type="text" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price" value=""  class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price" value=""  class="" type="number" /> </td>
             <td> <input style="width:100px; height:40px;border-radius: 10px;" name="quantity" value=""  min="1" class="" type="number" /> </td>
             <td>20</td>
-            <td>{{$data->image}}</td>
+            <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
 
             <td class="d-flex " style="text-align: center;">
-                {{-- <div class="">
+                <!-- <div class="">
                     <a href="" style="border-radius: 10px;" class="btn btn-warning  border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>
                 </div>
                 <div>
                     <a href="" style="border-radius: 10px;" class="btn btn-success  border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i></a>
-                </div> --}}
+                </div>  -->
                 <div>
                     <a href="" style="border-radius: 10px;" class="btn btn-danger border border-light"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
                 </div>
             </td>
 
           </tr>
+        @php
+         
+        @endphp
+         
           @endforeach
 
         </tbody>
-        <tfoot style="width: 100%; border-top:double rgb(202, 69, 255) 5px">
-            <th colspan="6">Total</th>
-            <td>$totalPrice=$totalPrice+$data-></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button><a href="">submit</a></button>
-            </td>
+        <tfoot  style="width: 100%; border-top:double rgb(202, 69, 255) 5px">
+            <tr>
+                <th colspan="3"> 
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="startDate">Date pik.</label>
+                        <input style=" height:40px;" name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" required/>
+                    </div>
+                </th>   
+                <td colspan="4"></td>
+                <td rowspan="2" style="color:white;">Total : {{$totalPrice}} TK</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"><button style="border-radius: 10px; width:100%; height:40px; " class="btn btn-primary  border border-light" type="submit">submit</button></td>
+            </tr>
+            <tr>
+                
+                <td colspan="3">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
+                    <select style=" height:40px;" name="supplier_id" class="form-select" id="inputGroupSelect01" required>
+                            <option selected>Choose Supplier..</option>
+                        @foreach ($supplierData as $data)
+                            <option value="{{$data->id}}">{{$data->name}}</option>
+                        @endforeach
+
+                    </select>
+                   
+                </div> 
+               
+                </td>
+                <td colspan="4"></td>
+                
+            </tr>
         </tfoot>
       </table>
-</div>
+ </form>
 
 
+
+    </div>
 
     </div>
 

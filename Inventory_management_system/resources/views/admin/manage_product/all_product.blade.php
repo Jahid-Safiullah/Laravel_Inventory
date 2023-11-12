@@ -47,7 +47,7 @@
             <td>{{$data->description}}</td>
             <td>{{$data->catagory}}</td>
             <td>{{$data->unit}}</td>
-            <td>{{$data->image}}</td>
+            <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
             <td>{{$data->status}}</td>
             <td class="d-flex " style="text-align: center;">
                 <div class="">

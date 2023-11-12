@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('sell_price')->nullabel();
             $table->string('quantity');
             $table->string('total_price');
-            $table->string('dis_price')->nullabel();
-            $table->string('paid_price')->nullabel();
+            $table->decimal('dis_price')->default(0);
+            $table->decimal('paid_price')->default(0);
             $table->string('date');
             $table->string('month');
             $table->string('year');
