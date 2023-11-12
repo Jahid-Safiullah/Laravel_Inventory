@@ -27,8 +27,8 @@
             </div>
         </form>
 
-        
-             
+
+
 
             <!--  <div style="text-align:end; padding-bottom: 25px;">
                    <button style="border-radius: 10px;">
@@ -104,28 +104,28 @@
             </td>
 
           </tr>
-        @php
-         
-        @endphp
-         
+        {{-- @php
+         $totalPrice=buying_price*quantity
+        @endphp --}}
+
           @endforeach
 
         </tbody>
         <tfoot  style="width: 100%; border-top:double rgb(202, 69, 255) 5px">
             <tr>
-                <th colspan="3"> 
+                <th colspan="3">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="startDate">Date pik.</label>
                         <input style=" height:40px;" name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" required/>
                     </div>
-                </th>   
+                </th>
                 <td colspan="4"></td>
                 <td rowspan="2" style="color:white;">Total : {{$totalPrice}} TK</td>
                 <td rowspan="2"></td>
                 <td rowspan="2"><button style="border-radius: 10px; width:100%; height:40px; " class="btn btn-primary  border border-light" type="submit">submit</button></td>
             </tr>
             <tr>
-                
+
                 <td colspan="3">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
@@ -136,12 +136,12 @@
                         @endforeach
 
                     </select>
-                   
-                </div> 
-               
+
+                </div>
+
                 </td>
                 <td colspan="4"></td>
-                
+
             </tr>
         </tfoot>
       </table>

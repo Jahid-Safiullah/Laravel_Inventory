@@ -26,67 +26,6 @@ class PurchaseProductController extends Controller
 
 
 
-    public function submit_purchase(Request $request){
-        // dd($request);
-        // echo"<pre>";
-        // print_r($request);
-        // exit();
-        $currentDate = Carbon::now();
-        $totalPrice=$request->buying_price*$request->quantity;
-        $orderId =Str::uuid();
-        $cartDatas=cart::all();
-        foreach($cartDatas as $cartData){
-            $purchase_product_Tabel=new Purchase_product;
-            $purchase_product_Tabel->purchase_code= $orderId;
-            $purchase_product_Tabel->purchases_id= $request->supplier_id;
-            $purchase_product_Tabel->product_id=   $cartData->product_id;
-            $purchase_product_Tabel->buy_price=  $request->buying_price;
-            $purchase_product_Tabel->sell_price=  $request->selling_price;
-            $purchase_product_Tabel->quantity= $request->quantity;
-            $purchase_product_Tabel->total_price=  $totalPrice;
-            // $purchase_product_Tabel->dis_price= $request->dis_price;
-            // $purchase_product_Tabel->paid_price= $request->paid_price;
-            $purchase_product_Tabel->date= $request->date;
-            $purchase_product_Tabel->month= $currentDate->format('m');
-            $purchase_product_Tabel->year= $currentDate->format('Y');
-          
-            $purchase_product_Tabel->save();
-
-
-//for deleting data from cart table which are added in order table.
-            $cart_id=$cartData->id;
-            $delete_cart_id=Cart::find($cart_id);
-            $delete_cart_id->delete();
-
-        }
-        return redirect()->back()->with('message','Product Added Successfully');
-        
-
-        
-        // $purchaseData=new Purchase;
-        // $purchaseData=new Purchase_product;
-
-        // $purchaseData->suppliers_id=$request->supplier_id;
-        // $purchaseData->suppliers_id=$request->supplier_id;
-        // $purchaseData->suppliers_id=$request->supplier_id;
-        // $purchaseData->suppliers_id=$request->supplier_id;
-        // $purchaseData->suppliers_id=$request->supplier_id;
-
-        // $purchaseData=new Cart;
-        // $purchaseData->product_id=$request->add_cart_product;
-
-        // $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
-        //                         ->get();
-
-        // dd($purchase_product_Data);
-        // $purchase_product_Data->save();
-        // return redirect()->route('add_purchase_order');
-    }
-
-
-
-
-
     public function add_cart(Request $request){
         // dd($request->all());
         $request->validate([
@@ -118,36 +57,118 @@ class PurchaseProductController extends Controller
 
 
 
-    // public function add_product(Request $request){
-    //     // print_r($request->all());
-    //     // $supplierData=supuplier::all();
+    public function submit_purchase(Request $request){
+        // dd($request);
+        // echo"<pre>";
+        // print_r($request);
+        // exit();
+        $request->validate([
+            'supplier_id' => 'required',
+            'buying_price' => 'required',
+            'selling_price' => 'required',
+            'quantity' => 'required',
+            'date' => 'required',
+            // Add more validation rules as needed
+        ]);
+        //add supplier_id at purchase tabel
+        $purchaseData=new Purchase;
+        $purchaseData->suppliers_id= $request->supplier_id;
 
-    //     $supplierData=new Product;
+        $currentDate = Carbon::now();
+        $totalPrice=$request->buying_price*$request->quantity;
+        $orderId =Str::uuid();
+        $cartDatas=cart::all();
+        foreach($cartDatas as $cartData){
 
-    //     $supplierData->name=$request->product_name;
-    //     $supplierData->description=$request->product_des;
+            $purchase_product_Tabel=new Purchase_product;
+            $purchase_product_Tabel->purchase_code= $orderId;
+            $purchase_product_Tabel->purchases_id= $request->supplier_id;
 
-    //     $supplierData->catagory=$request->catagory_name;
+            $purchase_product_Tabel->product_id=   $cartData->product_id;
+            $purchase_product_Tabel->buy_price=  $request->buying_price;
+            $purchase_product_Tabel->sell_price=  $request->selling_price;
+            $purchase_product_Tabel->quantity= $request->quantity;
+            $purchase_product_Tabel->total_price=  $totalPrice;
+            // $purchase_product_Tabel->dis_price= $request->dis_price;
+            // $purchase_product_Tabel->paid_price= $request->paid_price;
+            $purchase_product_Tabel->date= $request->date;
+            $purchase_product_Tabel->month= $currentDate->format('m');
+            $purchase_product_Tabel->year= $currentDate->format('Y');
 
-    //     $supplierData->unit=$request->unit_name;
 
-    //     $image=$request->product_image;
-    //     $imagename=time().'.'.$image->getClientOriginalExtension();
-    //     $request->product_image->move('product_image',$imagename);
-    //     $supplierData->image=$imagename;
+        $purchase_product_Tabel->save();
 
-    //     $supplierData->status=$request->status;
-    //     $supplierData->sku=$request->sku;
-    //     $supplierData->save();
+//for deleting data from cart table which are added in order table.
+            $cart_id=$cartData->id;
+            $delete_cart_id=Cart::find($cart_id);
+            $delete_cart_id->delete();
+
+
+
+        }
+        return redirect()->back()->with('message','Product Added Successfully');
+
+
+
+
+        // $purchaseData=new Purchase_product;
+
+
+
+
+        // $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
+        //                         ->get();
+
+        // dd($purchase_product_Data);
+        // $purchase_product_Data->save();
+        // return redirect()->route('add_purchase_order');
+    }
+
+
+
+
+    public function all_purchase(){
+    //      $supplierData=Supplier::all();
+        $purchaseSupplier=Purchase::all();
+        $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+        ->get();
+        // foreach($purchase_product_Data as $purchase_data){
+
+        return view('admin\mange_purchase\all_purchase',compact('purchaseSupplier','purchase_product_Data'));
     //     return redirect()->back()->with('message','Product Added Successfully');
-    // }
+    }
 
 
 
-    // public function index(){
-    //     // $allProductData = Purchase::all();
-    //     return view ('admin\mange_purchase\purchase');
-    // }
+    public function approval_purchase(){
+        //      $supplierData=Supplier::all();
+            $purchaseSupplier=Purchase::all();
+            $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+            ->get();
+            // foreach($purchase_product_Data as $purchase_data){
+
+            return view('admin\mange_purchase\approval_purchase',compact('purchaseSupplier','purchase_product_Data'));
+        //     return redirect()->back()->with('message','Product Added Successfully');
+        }
+
+
+
+
+
+    public function daily_purchase(){
+            //$supplierData=Supplier::all();
+            $purchaseSupplier=Purchase::all();
+            $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+            ->get();
+            // foreach($purchase_product_Data as $purchase_data){
+
+               return view('admin\mange_purchase\daily_purchase_report',compact('purchaseSupplier','purchase_product_Data'));
+        //  return redirect()->back()->with('message','Product Added Successfully');
+        }
+
+
+
+
 
 
 

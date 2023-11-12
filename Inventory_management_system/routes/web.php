@@ -89,13 +89,15 @@ Route::get('/delete_product/{id}', [ProductController::class, 'delete_product'])
 
 Route::get('/view_purchase_form', [PurchaseProductController::class, 'index'])->name('purchase');
 Route::post('/submit_purchase', [PurchaseProductController::class, 'submit_purchase'])->name('submit_purchase');
-
+Route::get('/all_purchase', [PurchaseProductController::class, 'all_purchase'])->name('all_purchase_product');
+Route::get('/approval_purchase', [PurchaseProductController::class, 'approval_purchase'])->name('approval_purchase');
+Route::get('/daily_purchase', [PurchaseProductController::class, 'daily_purchase'])->name('daily_purchase');
 
 //for purchase product--
 Route::post('/add_cart', [PurchaseProductController::class, 'add_cart']);
 
 
-// Route::get('/all_purchase', [PurchaseProductController::class, 'all_purchase'])->name('all_purchase');
+
 // Route::get('/edit_product/{id}', [PurchaseProductController::class, 'edit_product'])->name('edit_product');
 // Route::post('/update_product/{id}', [PurchaseProductController::class, 'update_product'])->name('update_product');
 // Route::get('/delete_product/{id}', [PurchaseProductController::class, 'delete_product']);

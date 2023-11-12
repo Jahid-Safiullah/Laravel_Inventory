@@ -2,32 +2,10 @@
 
 @section('content')
     <div class="">
-        <div class="input-group mb-3">
-        <label class="input-group-text" for="startDate">Supplier</label>
-          <input id="startDate" class="" type="date" />
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>Choose Supplier..</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-          <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Product</label>
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>Choose Product..</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
 
 
 <div style="text-align:end; padding-bottom: 25px;">
-    <a href="" style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-circle-plus" style="color: #192843;"></i>add Purchase</a>
+    <a href="{{route('purchase')}}" style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-circle-plus" style="color: #192843;"></i>add Purchase</a>
 </div>
 
 <div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
@@ -49,6 +27,7 @@
         <thead class="table-info">
           <tr >
             <th  style="color:white" scope="col">SL.</th>
+            <th  style="color:white" scope="col">P. Code</th>
             <th  style="color:white" scope="col">Product Name</th>
             <th  style="color:white" scope="col">Product Description</th>
             <th  style="color:white" scope="col">Catagory</th>
@@ -67,16 +46,21 @@
             @php
                 $sl=1;
             @endphp
-          {{-- @foreach($allProductData as $data) --}}
+         @foreach($purchase_product_Data as $data)
           <tr>
             <th scope="row">{{$sl++}}</th>
-            {{-- <td>{{$data->sku}}</td>
+            <td>{{$data->sku}}</td>
             <td>{{$data->name}}</td>
             <td>{{$data->description}}</td>
             <td>{{$data->catagory}}</td>
             <td>{{$data->unit}}</td>
-            <td>{{$data->image}}</td>
-            <td>{{$data->status}}</td> --}}
+            <td>{{$data->buy_price}}</td>
+            <td>{{$data->sell_price}}</td>
+            <td>{{$data->quantity}}</td>
+            <td>{{$data->total_price}}</td>
+            <td>{{$data->dis_price}}</td>
+            <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
+            <td>{{$data->status}}</td>
             <td class="d-flex " style="text-align: center;">
                 <div class="">
                     <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>
@@ -90,7 +74,7 @@
             </td>
 
           </tr>
-          {{-- @endforeach --}}
+          @endforeach
 
         </tbody>
       </table>
