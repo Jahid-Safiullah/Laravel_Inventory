@@ -16,6 +16,25 @@ use Illuminate\Http\Request;
 
 class PurchaseProductController extends Controller
 {
+
+    public function all_purchase(){
+        //      $supplierData=Supplier::all();
+            $purchaseSupplier=Purchase::all();
+            $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+            ->get();
+            // foreach($purchase_product_Data as $purchase_data){
+    
+            return view('admin\mange_purchase\all_purchase',compact('purchaseSupplier','purchase_product_Data'));
+        //     return redirect()->back()->with('message','Product Added Successfully');
+        }
+
+
+
+
+
+
+
+
     public function index(){
         $supplierData=Supplier::all();
         $productData=Product::all();
@@ -73,11 +92,23 @@ class PurchaseProductController extends Controller
         //add supplier_id at purchase tabel
         $purchaseData=new Purchase;
         $purchaseData->suppliers_id= $request->supplier_id;
+        $totalPrice=$request->buying_price;
+        $quantities=$request->quantity; 
+        foreach ($totalPrice as $key => $buyingPrice) {
+            $quantity = $quantities[$key];
+        
+            // Multiply buying price and quantity for each item
+            $result = $buyingPrice * $quantity;
+        
+            // You can do something with the result, such as saving it to a database or using it in your application
+            $results[] = $result;
+        }
+        
 
         $currentDate = Carbon::now();
-        $totalPrice=$request->buying_price*$request->quantity;
         $orderId =Str::uuid();
         $cartDatas=cart::all();
+
         foreach($cartDatas as $cartData){
 
             $purchase_product_Tabel=new Purchase_product;
@@ -85,7 +116,7 @@ class PurchaseProductController extends Controller
             $purchase_product_Tabel->purchases_id= $request->supplier_id;
 
             $purchase_product_Tabel->product_id=   $cartData->product_id;
-            $purchase_product_Tabel->buy_price=  $request->buying_price;
+            $purchase_product_Tabel->buy_price=  $result;
             $purchase_product_Tabel->sell_price=  $request->selling_price;
             $purchase_product_Tabel->quantity= $request->quantity;
             $purchase_product_Tabel->total_price=  $totalPrice;
@@ -94,7 +125,6 @@ class PurchaseProductController extends Controller
             $purchase_product_Tabel->date= $request->date;
             $purchase_product_Tabel->month= $currentDate->format('m');
             $purchase_product_Tabel->year= $currentDate->format('Y');
-
 
         $purchase_product_Tabel->save();
 
@@ -127,16 +157,7 @@ class PurchaseProductController extends Controller
 
 
 
-    public function all_purchase(){
-    //      $supplierData=Supplier::all();
-        $purchaseSupplier=Purchase::all();
-        $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
-        ->get();
-        // foreach($purchase_product_Data as $purchase_data){
-
-        return view('admin\mange_purchase\all_purchase',compact('purchaseSupplier','purchase_product_Data'));
-    //     return redirect()->back()->with('message','Product Added Successfully');
-    }
+ 
 
 
 

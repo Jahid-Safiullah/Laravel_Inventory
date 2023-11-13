@@ -85,9 +85,9 @@
 
             <td>{{$data->catagory}}</td>
             <td>{{$data->unit}}</td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price" value=""  class="" type="number" /> </td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price" value=""  class="" type="number" /> </td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="quantity" value=""  min="1" class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price[]" value=""  class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price[]" value=""  class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="quantity[]" value=""  min="1" class="" type="number" /> </td>
             <td>20</td>
             <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
 

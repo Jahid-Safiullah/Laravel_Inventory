@@ -157,8 +157,8 @@
             <div class="collapse" id="ui-Purchase">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('all_purchase_product')}}">All Purchase Product</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('approval_purchase')}}">Aproval Purchase</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('daily_purchase')}}">Daily Purchase Report</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="{{route('approval_purchase')}}">Aproval Purchase</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('daily_purchase')}}">Daily Purchase Report</a></li> -->
               </ul>
             </div>
           </li>
