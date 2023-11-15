@@ -18,19 +18,12 @@ class PurchaseProductController extends Controller
 {
 
     public function all_purchase(){
-        //      $supplierData=Supplier::all();
             $purchaseSupplier=Purchase::all();
             $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
             ->get();
-            // foreach($purchase_product_Data as $purchase_data){
-    
             return view('admin\mange_purchase\all_purchase',compact('purchaseSupplier','purchase_product_Data'));
-        //     return redirect()->back()->with('message','Product Added Successfully');
+
         }
-
-
-
-
 
 
 
@@ -55,9 +48,8 @@ class PurchaseProductController extends Controller
                 'exists:products,id',
                 Rule::unique('Carts')->where(function ($query) use ($request) {
                     return $query
-                                //  ->where('user_id', auth()->id())
-                                 ->where('product_id', $request->input('product_id'))
-                                 ->where('created_at', '>', now()->subHours(24)); // Adjust the time frame as needed
+                              ->where('product_id', $request->input('product_id'))
+                              ->where('created_at', '>', now()->subHours(24));
                 }),
             ],
             // Other validation rules for your form fields
@@ -65,13 +57,8 @@ class PurchaseProductController extends Controller
         $purchaseData=new Cart;
         $purchaseData->product_id=$request->product_id;
         // dd($purchaseData);
-
-
-            $purchaseData->save();
-            return redirect()->back();
-
-
-
+        $purchaseData->save();
+        return redirect()->back();
     }
 
 
@@ -87,24 +74,10 @@ class PurchaseProductController extends Controller
             'selling_price' => 'required',
             'quantity' => 'required',
             'date' => 'required',
-            // Add more validation rules as needed
+
         ]);
-        //add supplier_id at purchase tabel
         $purchaseData=new Purchase;
         $purchaseData->suppliers_id= $request->supplier_id;
-        $totalPrice=$request->buying_price;
-        $quantities=$request->quantity; 
-        foreach ($totalPrice as $key => $buyingPrice) {
-            $quantity = $quantities[$key];
-        
-            // Multiply buying price and quantity for each item
-            $result = $buyingPrice * $quantity;
-        
-            // You can do something with the result, such as saving it to a database or using it in your application
-            $results[] = $result;
-        }
-        
-
         $currentDate = Carbon::now();
         $orderId =Str::uuid();
         $cartDatas=cart::all();
@@ -114,62 +87,38 @@ class PurchaseProductController extends Controller
             $purchase_product_Tabel=new Purchase_product;
             $purchase_product_Tabel->purchase_code= $orderId;
             $purchase_product_Tabel->purchases_id= $request->supplier_id;
-
             $purchase_product_Tabel->product_id=   $cartData->product_id;
-            $purchase_product_Tabel->buy_price=  $result;
+            $purchase_product_Tabel->buy_price=  $request->buying_price;
             $purchase_product_Tabel->sell_price=  $request->selling_price;
             $purchase_product_Tabel->quantity= $request->quantity;
-            $purchase_product_Tabel->total_price=  $totalPrice;
+            // $purchase_product_Tabel->total_price=   ;
             // $purchase_product_Tabel->dis_price= $request->dis_price;
             // $purchase_product_Tabel->paid_price= $request->paid_price;
             $purchase_product_Tabel->date= $request->date;
             $purchase_product_Tabel->month= $currentDate->format('m');
             $purchase_product_Tabel->year= $currentDate->format('Y');
 
-        $purchase_product_Tabel->save();
+            $purchase_product_Tabel->save();
 
-//for deleting data from cart table which are added in order table.
+            //for deleting data from cart table which are added in order table.
             $cart_id=$cartData->id;
             $delete_cart_id=Cart::find($cart_id);
             $delete_cart_id->delete();
-
-
-
         }
         return redirect()->back()->with('message','Product Added Successfully');
 
-
-
-
-        // $purchaseData=new Purchase_product;
-
-
-
-
-        // $purchase_product_Data=DB('Carts')->join('products', 'carts.product_id', '=', 'products.id')
-        //                         ->get();
-
-        // dd($purchase_product_Data);
-        // $purchase_product_Data->save();
-        // return redirect()->route('add_purchase_order');
     }
 
 
 
 
- 
-
-
-
     public function approval_purchase(){
-        //      $supplierData=Supplier::all();
+
             $purchaseSupplier=Purchase::all();
             $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
             ->get();
-            // foreach($purchase_product_Data as $purchase_data){
-
             return view('admin\mange_purchase\approval_purchase',compact('purchaseSupplier','purchase_product_Data'));
-        //     return redirect()->back()->with('message','Product Added Successfully');
+
         }
 
 
@@ -177,14 +126,12 @@ class PurchaseProductController extends Controller
 
 
     public function daily_purchase(){
-            //$supplierData=Supplier::all();
+
             $purchaseSupplier=Purchase::all();
             $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
-            ->get();
-            // foreach($purchase_product_Data as $purchase_data){
+                                        ->get();
+            return view('admin\mange_purchase\daily_purchase_report',compact('purchaseSupplier','purchase_product_Data'));
 
-               return view('admin\mange_purchase\daily_purchase_report',compact('purchaseSupplier','purchase_product_Data'));
-        //  return redirect()->back()->with('message','Product Added Successfully');
         }
 
 

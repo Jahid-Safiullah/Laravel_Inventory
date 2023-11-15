@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\PurchaseProductController;
+use App\Http\Controllers\SellController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,7 +100,18 @@ Route::post('/add_cart', [PurchaseProductController::class, 'add_cart']);
 
 
 
+
+
+Route::get('/sellsProduct', [SellController::class, 'index'])->name('sellsProduct');
+// Route::get('/product-list', 'App\Http\Controllers\SellController@productList')->name('product.list');
+Route::post('/product-order/{id}', 'App\Http\Controllers\SellController@addToCart')->name('add_order_to_cart');
+
+
+
 // Route::get('/edit_product/{id}', [PurchaseProductController::class, 'edit_product'])->name('edit_product');
-// Route::post('/update_product/{id}', [PurchaseProductController::class, 'update_product'])->name('update_product');
+Route::post('/store_order/{id}', [SellController::class, 'store_order'])->name('store_order');
 // Route::get('/delete_product/{id}', [PurchaseProductController::class, 'delete_product']);
+
+
+
 

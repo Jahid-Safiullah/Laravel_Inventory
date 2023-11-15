@@ -157,8 +157,8 @@
             <div class="collapse" id="ui-Purchase">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('all_purchase_product')}}">All Purchase Product</a></li>
-                <!-- <li class="nav-item"> <a class="nav-link" href="{{route('approval_purchase')}}">Aproval Purchase</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('daily_purchase')}}">Daily Purchase Report</a></li> -->
+              <li class="nav-item"> <a class="nav-link" href="{{route('approval_purchase')}}">Aproval Purchase</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('daily_purchase')}}">Daily Purchase Report</a></li>
               </ul>
             </div>
           </li>
@@ -169,14 +169,14 @@
               <span class="menu-icon">
                 <i class="fa-solid fa-file-invoice" style="color: #e2cf00;"></i>
               </span>
-              <span class="menu-title">Manage Invoice</span>
+              <span class="menu-title">Manage Sells</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-Invoice">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages">All Invoice</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages">Aproval Invoice</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages">Daily Invoice Report</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('sellsProduct')}}">Sells Order</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages">Aproval Sells Order</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages">Sells Report</a></li>
               </ul>
             </div>
           </li>
