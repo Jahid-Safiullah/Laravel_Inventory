@@ -62,52 +62,125 @@ class PurchaseProductController extends Controller
     }
 
 
+    public function submit_purchase(Request $request)
+{
+    $request->validate([
+        'supplier_id' => 'required',
+        'buying_price' => 'required',
+        'selling_price' => 'required',
+        'quantity' => 'required',
+    ]);
 
-    public function submit_purchase(Request $request){
-        // dd($request);
-        // echo"<pre>";
-        // print_r($request);
-        // exit();
-        $request->validate([
-            'supplier_id' => 'required',
-            'buying_price' => 'required',
-            'selling_price' => 'required',
-            'quantity' => 'required',
-            'date' => 'required',
+    $purchaseData = new Purchase;
+    $purchaseData->suppliers_id = $request->supplier_id;
+    // Set other attributes
+    $purchaseData->save();
 
-        ]);
-        $purchaseData=new Purchase;
-        $purchaseData->suppliers_id= $request->supplier_id;
-        $currentDate = Carbon::now();
-        $orderId =Str::uuid();
-        $cartDatas=cart::all();
 
-        foreach($cartDatas as $cartData){
+    $currentDate = Carbon::now();
+    $orderId = Str::uuid();
+    $purchase_product_Tabel = new Purchase_product;
+    $scores = $request->input('scores');
+   
 
-            $purchase_product_Tabel=new Purchase_product;
-            $purchase_product_Tabel->purchase_code= $orderId;
-            $purchase_product_Tabel->purchases_id= $request->supplier_id;
-            $purchase_product_Tabel->product_id=   $cartData->product_id;
-            $purchase_product_Tabel->buy_price=  $request->buying_price;
-            $purchase_product_Tabel->sell_price=  $request->selling_price;
-            $purchase_product_Tabel->quantity= $request->quantity;
-            // $purchase_product_Tabel->total_price=   ;
-            // $purchase_product_Tabel->dis_price= $request->dis_price;
-            // $purchase_product_Tabel->paid_price= $request->paid_price;
-            $purchase_product_Tabel->date= $request->date;
-            $purchase_product_Tabel->month= $currentDate->format('m');
-            $purchase_product_Tabel->year= $currentDate->format('Y');
+    foreach($scores as $row){
 
-            $purchase_product_Tabel->save();
-
-            //for deleting data from cart table which are added in order table.
-            $cart_id=$cartData->id;
-            $delete_cart_id=Cart::find($cart_id);
-            $delete_cart_id->delete();
-        }
-        return redirect()->back()->with('message','Product Added Successfully');
-
+        $purchase_product_Tabel->purchase_code = $orderId;
+        $purchase_product_Tabel->product_id = $row['product_id'];
+        $purchase_product_Tabel->buy_price = $row['buying_price'];
+        $purchase_product_Tabel->sell_price = $row['selling_price'];
+        $purchase_product_Tabel->quantity = $row['quantity'];
+        $purchase_product_Tabel->save();
+       
     }
+
+    
+
+    return redirect()->back()->with('message', 'Product Added Successfully');
+}
+
+
+
+
+    // public function submit_purchase(Request $request){
+    //     // dd($request->All());
+    //     // echo"<pre>";
+    //     // print_r($request);
+    //     // exit();
+    //     $request->validate([
+    //         'supplier_id' => 'required',
+    //         'buying_price' => 'required',
+    //         'selling_price' => 'required',
+    //         'quantity' => 'required',
+            
+
+    //     ]);
+    //     $purchaseData=new Purchase;
+    //     $purchaseData->suppliers_id= $request->supplier_id;
+     
+
+    //         $product_ids = $request->input('product_id');
+    //         $buyingPrices = $request->input('buying_price');
+    //         $sellingPrices = $request->input('selling_price');
+    //         $quantities = $request->input('quantity');
+            
+    //         $purchase_product_Tabel=new Purchase_product;
+    //         $currentDate = Carbon::now();
+    //         $orderId =Str::uuid();
+    //         $cartDatas=cart::all();
+            
+    //         $purchase=Purchase::all();
+    //         // dd($quantities);
+            
+        
+    //     foreach ([$product_ids as $key => $product_id, $buyingPrices as $key => $buyingPrice, $sellingPrices as $key => $sellingPrice, $quantities as $key => $quantity ]) {
+                
+    //         // dd($quantity);
+
+    //         $purchase_product_Tabel->purchase_code= $orderId;
+    //         // $purchase_product_Tabel->purchases_id=  $purchase->id;
+    //         $purchase_product_Tabel->product_id= $product_id ;
+    //         $purchase_product_Tabel->buy_price=  $buyingPrice;
+    //         $purchase_product_Tabel->sell_price=  $sellingPrice;
+    //         $purchase_product_Tabel->quantity= $quantity;
+    //         // $purchase_product_Tabel->total_price=   ;
+    //         // $purchase_product_Tabel->dis_price= $request->dis_price;
+    //         // $purchase_product_Tabel->paid_price= $request->paid_price;
+          
+    //         // $purchase_product_Tabel->month= $currentDate->format('m');
+    //         // $purchase_product_Tabel->year= $currentDate->format('Y');
+
+    //         $purchase_product_Tabel->save();
+                
+    //         }
+           
+           
+    //         // $purchase_product_Tabel->purchases_id=  '0';
+
+    //     // foreach($cartDatas as $cartData){
+    //     //     $purchase_product_Tabel->purchase_code= $orderId;
+    //     //     // $purchase_product_Tabel->purchases_id=  $purchase->id;
+    //     //     $purchase_product_Tabel->product_id=   $cartData->product_id;
+    //     //     $purchase_product_Tabel->buy_price=  $request->input('buying_price')[$key];
+    //     //     $purchase_product_Tabel->sell_price=  $request->input('selling_price')[$key];
+    //     //     $purchase_product_Tabel->quantity= $request->input('quantity')[$key];
+    //     //     // $purchase_product_Tabel->total_price=   ;
+    //     //     // $purchase_product_Tabel->dis_price= $request->dis_price;
+    //     //     // $purchase_product_Tabel->paid_price= $request->paid_price;
+    //     //     $purchase_product_Tabel->date= $request->date;
+    //     //     $purchase_product_Tabel->month= $currentDate->format('m');
+    //     //     $purchase_product_Tabel->year= $currentDate->format('Y');
+
+    //     //     $purchase_product_Tabel->save();
+
+    //     //     //for deleting data from cart table which are added in order table.
+    //     //     // $cart_id=$cartData->id;
+    //     //     // $delete_cart_id=Cart::find($cart_id);
+    //     //     // $delete_cart_id->delete();
+    //     // }
+    //     return redirect()->back()->with('message','Product Added Successfully');
+
+    // }
 
 
 

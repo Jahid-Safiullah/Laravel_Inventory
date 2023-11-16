@@ -80,24 +80,17 @@
           @foreach($purchase_product_Data as $data)
           <tr>
             <th scope="row">{{$sl++}}</th>
-
             <td>{{$data->name}}</td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="scores[{{$loop->index}}][product_id]" value="{{$data->id}}"  class="" type="number" /> </td>
 
             <td>{{$data->catagory}}</td>
             <td>{{$data->unit}}</td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="buying_price" value=""  class="" type="number" /> </td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="selling_price" value=""  class="" type="number" /> </td>
-            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="quantity" value=""  min="1" class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="scores[{{$loop->index}}][buying_price]" value=""  class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="scores[{{$loop->index}}][selling_price]" value=""  class="" type="number" /> </td>
+            <td> <input style="width:100px; height:40px;border-radius: 10px;" name="scores[{{$loop->index}}][quantity]" value=""  min="1" class="" type="number" /> </td>
             <td>20</td>
             <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
-
             <td class="d-flex " style="text-align: center;">
-                <!-- <div class="">
-                    <a href="" style="border-radius: 10px;" class="btn btn-warning  border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>
-                </div>
-                <div>
-                    <a href="" style="border-radius: 10px;" class="btn btn-success  border border-light"><i class="fa-solid fa-toggle-on" style="color: #000000;"></i></a>
-                </div>  -->
                 <div>
                     <a href="" style="border-radius: 10px;" class="btn btn-danger border border-light"><i class="fa-solid fa-trash" style="color: #000000;"></i></a>
                 </div>
@@ -116,7 +109,7 @@
                 <th colspan="3">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="startDate">Date pik.</label>
-                        <input style=" height:40px;" name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" required/>
+                        <input style=" height:40px;" name="date" value="{{date('d/m/y')}}" id="startDate" class="" type="date" />
                     </div>
                 </th>
                 <td colspan="4"></td>

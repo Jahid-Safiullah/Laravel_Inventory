@@ -73,7 +73,7 @@
 
                                         <label for="customer" class="col-sm-2 col-form-label"></label>
                                         <div class="col-sm-5 " >
-                                            <form action="" method="post">
+                            <form action="" method="post">
                                                 @csrf
                                             <select name="customer" class="form-control"  style="border-radius: 10px; height:35px; background:#2A3038; color:azure"  id="customer" required>
                                                 <option selected>Choose Customer</option>
