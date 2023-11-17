@@ -9,4 +9,13 @@ class Purchase_product extends Model
 {
     use HasFactory;
 
+
+    protected $table = 'Purchase_products';
+
+    // Define the relationship to the Product model
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
 }

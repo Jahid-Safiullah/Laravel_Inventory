@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('invoice')->nullable();
             $table->integer('product_id');
             $table->integer('purchase_p_id');
+            $table->integer('order_customer_table_id');
             $table->integer('cart_id');
+            $table->integer('price')->nullable()->default(0);
             $table->integer('quantity');
             $table->decimal('total_price',10,2);
-            $table->decimal('sub_total',10,2);
+            $table->decimal('sub_total',10,2)->default('');
             $table->decimal('paid_amount',10,2)->default(0);
             $table->decimal('discount',10,2)->default(0);
             $table->string('date');

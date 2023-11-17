@@ -26,6 +26,20 @@ class PurchaseProductController extends Controller
         }
 
 
+        public function showDetails($id)
+        {
+            $purchaseProduct = Purchase_product::with('product')
+            ->find($id);
+
+        // Debugging: Check the result for the specific $id
+            // dd($purchaseProduct);
+
+            return view('admin\mange_purchase\poduct_dtailes', ['purchaseProduct' => $purchaseProduct]);
+        }
+
+
+
+
 
 
     public function index(){
@@ -63,41 +77,57 @@ class PurchaseProductController extends Controller
 
 
     public function submit_purchase(Request $request)
-{
-    $request->validate([
-        'supplier_id' => 'required',
-        'buying_price' => 'required',
-        'selling_price' => 'required',
-        'quantity' => 'required',
-    ]);
+    {
+        // return $request->all();
+        $request->validate([
+            'supplier_id' => 'required',
+            'buying_price' => 'required',
+            'selling_price' => 'required',
+            'quantity' => 'required',
+            'date' => 'required',
+        ]);
 
-    $purchaseData = new Purchase;
-    $purchaseData->suppliers_id = $request->supplier_id;
-    // Set other attributes
-    $purchaseData->save();
+        $currentDate = Carbon::now();
+        $orderId = Str::uuid();
 
 
-    $currentDate = Carbon::now();
-    $orderId = Str::uuid();
-    $purchase_product_Tabel = new Purchase_product;
-    $scores = $request->input('scores');
-   
 
-    foreach($scores as $row){
+        //purchase supplier---
+        $purchaseData = new Purchase;
+        $purchaseData->suppliers_id = $request->supplier_id;
+        $purchaseData->save();
+        $purchases_id=$purchaseData->id;
 
-        $purchase_product_Tabel->purchase_code = $orderId;
-        $purchase_product_Tabel->product_id = $row['product_id'];
-        $purchase_product_Tabel->buy_price = $row['buying_price'];
-        $purchase_product_Tabel->sell_price = $row['selling_price'];
-        $purchase_product_Tabel->quantity = $row['quantity'];
-        $purchase_product_Tabel->save();
-       
+
+            //purchase product---
+        for($product_id = 0; $product_id < count($request->product_id); $product_id++)
+        {
+            $purchase_product_Tabel = new Purchase_product;
+            $purchase_product_Tabel->purchase_code=$orderId;
+            $purchase_product_Tabel->purchases_id=$purchases_id;
+            $purchase_product_Tabel->product_id=$request->product_id[$product_id];
+            $purchase_product_Tabel->buy_price=$request->buying_price[$product_id];
+            $purchase_product_Tabel->sell_price=$request->selling_price[$product_id];
+            $purchase_product_Tabel->quantity=$request->quantity[$product_id];
+            $purchase_product_Tabel->date=$request->date;
+            $purchase_product_Tabel->month= $currentDate->format('m');
+            $purchase_product_Tabel->year= $currentDate->format('Y');
+            $purchase_product_Tabel->save();
+
+
+        }
+         //for deleting data from cart table which are added in order table.
+         Cart::truncate();
+
+
+
+
+
+         return redirect()->back()->with('success', 'Purchase completed successfully');
     }
 
-    
 
-    return redirect()->back()->with('message', 'Product Added Successfully');
-}
+
 
 
 
@@ -112,29 +142,29 @@ class PurchaseProductController extends Controller
     //         'buying_price' => 'required',
     //         'selling_price' => 'required',
     //         'quantity' => 'required',
-            
+
 
     //     ]);
     //     $purchaseData=new Purchase;
     //     $purchaseData->suppliers_id= $request->supplier_id;
-     
+
 
     //         $product_ids = $request->input('product_id');
     //         $buyingPrices = $request->input('buying_price');
     //         $sellingPrices = $request->input('selling_price');
     //         $quantities = $request->input('quantity');
-            
+
     //         $purchase_product_Tabel=new Purchase_product;
     //         $currentDate = Carbon::now();
     //         $orderId =Str::uuid();
     //         $cartDatas=cart::all();
-            
+
     //         $purchase=Purchase::all();
     //         // dd($quantities);
-            
-        
-    //     foreach ([$product_ids as $key => $product_id, $buyingPrices as $key => $buyingPrice, $sellingPrices as $key => $sellingPrice, $quantities as $key => $quantity ]) {
-                
+
+
+    //         foreach () {
+
     //         // dd($quantity);
 
     //         $purchase_product_Tabel->purchase_code= $orderId;
@@ -146,15 +176,20 @@ class PurchaseProductController extends Controller
     //         // $purchase_product_Tabel->total_price=   ;
     //         // $purchase_product_Tabel->dis_price= $request->dis_price;
     //         // $purchase_product_Tabel->paid_price= $request->paid_price;
-          
+
     //         // $purchase_product_Tabel->month= $currentDate->format('m');
     //         // $purchase_product_Tabel->year= $currentDate->format('Y');
 
     //         $purchase_product_Tabel->save();
-                
+
     //         }
-           
-           
+
+    //  }
+
+
+
+
+
     //         // $purchase_product_Tabel->purchases_id=  '0';
 
     //     // foreach($cartDatas as $cartData){

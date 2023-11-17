@@ -7,6 +7,7 @@
 
 
    <meta charset="utf-8">
+   <meta name="csrf-token"content="{{csrf_token()}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Trunk.com</title>
     <!-- plugins:css -->
@@ -82,6 +83,6 @@
     <!-- Custom js for this page -->
     <script src="admin/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
-    @stack('scripts')
+    @yield('script')
   </body>
 </html>

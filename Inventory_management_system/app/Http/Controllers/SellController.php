@@ -20,7 +20,7 @@ class SellController extends Controller
                         ->join('products', 'sells_carts.product_id', '=', 'products.id')
                        ->join('Purchase_products', 'sells_carts.purchase_p_id', '=', 'Purchase_products.id')
                         // ->select('products.name as p_name','Purchase_products.sell_price as selling_price','sells_carts.total as cart_total','sells_carts.sub_total as s_total','Purchase_products.quantity as purchase_qty','sells_carts.quantity as order_quantity' )
-                        ->select('products.name as p_name','sells_carts.total as cart_total','Purchase_products.quantity as purchase_qty','sells_carts.quantity as order_quantity','Purchase_products.sell_price as selling_price' )
+                        ->select('sells_carts.id as cart_id','products.name as p_name','sells_carts.total as cart_total','Purchase_products.quantity as purchase_qty','sells_carts.quantity as order_quantity','Purchase_products.sell_price as selling_price' )
                         ->get();
         $productRow=DB::table('Purchase_products')
                         ->join('products', 'Purchase_products.product_id', '=', 'products.id')
@@ -56,63 +56,13 @@ class SellController extends Controller
      }
 
 
-     // Store a newly created resource in storage.
-    public function store_order(Request $request, $id)
-    {
-         // echo"<pre>";
-        // print_r($id);
-        // exit();
-        $cartData=SellsCart::find($id);
-        // print_r($cartData);
-        // exit();
-        $add_CustomerData=new Order_cusomer;
-        $add_ProductData=new Order_product;
-        $add_ProductData->invoice=
-        $add_ProductData->product_id=
-        $add_ProductData->purchase_p_id=
-        $add_ProductData->cart_id=
-        $add_ProductData->quantity=
-        $add_ProductData->total_price=
-        $add_ProductData->sub_total=
-        $add_ProductData->paid_amount=
-        $add_ProductData->discount=
-        $add_ProductData->date=
-
-        // dd($purchaseData);
-        $cart->save();
-        return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show()
-    {
-        // $cartData= SellsCart::all();
-        // return view('admin\manage_sells\sells', compact('cartData'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(sell $sell)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, sell $sell)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(sell $sell)
+    public function delete_post($id)
     {
-        //
+        $data=SellsCart::find($id);
+        $data->delete();
+         return response()->json(['success'=>true,'tr'=>'tr_'.$id]);
     }
 }

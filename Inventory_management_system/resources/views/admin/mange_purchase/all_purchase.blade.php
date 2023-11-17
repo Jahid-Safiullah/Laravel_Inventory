@@ -11,11 +11,11 @@
 <div  class="px-4 mb-4 row justify-content-evenly"  style="justify-content: space-between;">
 
     <h3 class="card-title "> All Purchase Product </h3>
-{{--
+
     <div class="input-group mb-3  "  >
         <input style="border-radius:  25px 0 0 25px;" type="text" class="form-control" placeholder="Product name.." aria-label="Product name" aria-describedby="button-addon2" >
         <button style="border-radius: 0 25px 25px 0;" class="btn btn-outline-secondary" type="button" id="button-addon2" >Search</button>
-    </div> --}}
+    </div>
 
 
 </div>
@@ -27,21 +27,19 @@
         <thead class="table-info">
           <tr >
             <th  style="color:white" scope="col">SL.</th>
-            <th  style="color:white" scope="col">P. Code</th>
             <th  style="color:white" scope="col">Product Name</th>
-            <th  style="color:white" scope="col">Product Description</th>
-            <th  style="color:white" scope="col">Catagory</th>
-            <th  style="color:white" scope="col">Unit</th>
             <th  style="color:white" scope="col">Unit buy Price</th>
             <th  style="color:white" scope="col">Unit sell Price</th>
             <th  style="color:white" scope="col">Quntity</th>
-            <th  style="color:white" scope="col">Toral Price</th>
-            <th  style="color:white" scope="col">discount Price</th>
+            <th  style="color:white" scope="col">Unit</th>
             <th  style="color:white" scope="col">Image</th>
             <th  style="color:white" scope="col">Status</th>
             <th  style="color:white" scope="col">Action</th>
           </tr>
         </thead>
+      @if($purchase_product_Data->isEmpty())
+                <p>No purchase products found.</p>
+      @else
         <tbody>
             @php
                 $sl=1;
@@ -49,19 +47,17 @@
          @foreach($purchase_product_Data as $data)
           <tr>
             <th scope="row">{{$sl++}}</th>
-            <td>{{$data->sku}}</td>
             <td>{{$data->name}}</td>
-            <td>{{$data->description}}</td>
-            <td>{{$data->catagory}}</td>
-            <td>{{$data->unit}}</td>
             <td>{{$data->buy_price}}</td>
             <td>{{$data->sell_price}}</td>
             <td>{{$data->quantity}}</td>
-            <td>{{$data->total_price}}</td>
-            <td>{{$data->dis_price}}</td>
+            <td>{{$data->unit}}</td>
             <td><img src="/product_image/{{$data->image}}" alt="{{$data->image}}" ></td>
             <td>{{$data->status}}</td>
-            <td class="d-flex " style="text-align: center;">
+            <td class="d-flex " style="">
+                <div>
+                    <a href="{{ route('purchase.details', $data->id) }}"style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-eye" style="color: #272727;"></i></a>
+                </div>
                 <div class="">
                     <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>
                 </div>
@@ -75,6 +71,7 @@
 
           </tr>
           @endforeach
+          @endif
 
         </tbody>
       </table>

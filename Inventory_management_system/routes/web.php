@@ -8,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\PurchaseProductController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\OrderProductController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +93,7 @@ Route::get('/delete_product/{id}', [ProductController::class, 'delete_product'])
 Route::get('/view_purchase_form', [PurchaseProductController::class, 'index'])->name('purchase');
 Route::post('/submit_purchase', [PurchaseProductController::class, 'submit_purchase'])->name('submit_purchase');
 Route::get('/all_purchase', [PurchaseProductController::class, 'all_purchase'])->name('all_purchase_product');
+Route::get('/purchase-details/{id}', [PurchaseProductController::class, 'showDetails'])->name('purchase.details');
 Route::get('/approval_purchase', [PurchaseProductController::class, 'approval_purchase'])->name('approval_purchase');
 Route::get('/daily_purchase', [PurchaseProductController::class, 'daily_purchase'])->name('daily_purchase');
 
@@ -105,6 +107,7 @@ Route::post('/add_cart', [PurchaseProductController::class, 'add_cart']);
 Route::get('/sellsProduct', [SellController::class, 'index'])->name('sellsProduct');
 // Route::get('/product-list', 'App\Http\Controllers\SellController@productList')->name('product.list');
 Route::post('/product-order/{id}', 'App\Http\Controllers\SellController@addToCart')->name('add_order_to_cart');
+Route::delete('/delete_post/{id}', 'App\Http\Controllers\SellController@delete_post');
 
 
 
@@ -113,5 +116,9 @@ Route::post('/store_order/{id}', [SellController::class, 'store_order'])->name('
 // Route::get('/delete_product/{id}', [PurchaseProductController::class, 'delete_product']);
 
 
+
+//order submit----
+Route::post('/order_customer', [OrderProductController::class, 'order'])->name('order');
+Route::get('/order_report', [OrderProductController::class, 'order_report'])->name('order_report');
 
 
