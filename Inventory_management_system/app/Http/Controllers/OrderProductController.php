@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 class OrderProductController extends Controller
 {
     public function order(Request $request)
-
-    {
+     { 
+        // exit();
         try {
             // Check if the cart is empty
             if (SellsCart::count() === 0) {
@@ -28,9 +28,7 @@ class OrderProductController extends Controller
                 'date' => 'required|date',
             ]);
 
-            // Start a database transaction
-
-
+        
             // Create an order customer record
             $customerData = new Order_cusomer;
             $customerData->customer_id = $request->customer;
@@ -73,9 +71,8 @@ class OrderProductController extends Controller
     }
 
 
-    public function order_report(){
-        $ordered_product=DB::table('Order_product')
-        ->join('products');
+    public function o_report(){
+       
         return view('admin\manage_sells\sells_report',compact('ordered_product'));
     }
 

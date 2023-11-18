@@ -20,22 +20,32 @@ class PurchaseProductController extends Controller
     public function all_purchase(){
             $purchaseSupplier=Purchase::all();
             $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+            ->select('Purchase_products.id as pp_id','Purchase_products.buy_price','Purchase_products.sell_price','Purchase_products.quantity','products.name','products.unit','products.image','products.status',)
             ->get();
             return view('admin\mange_purchase\all_purchase',compact('purchaseSupplier','purchase_product_Data'));
 
         }
 
 
+
+
         public function showDetails($id)
         {
-            $purchaseProduct = Purchase_product::with('product')
-            ->find($id);
+            // Retrieve the purchase product details with its associated product for the specific $id
+            // $purchaseProduct = DB::table('Purchase_products')
+            //     ->join('products', 'Purchase_products.product_id', '=', 'products.id')
+            //     ->where('Purchase_products.id', $id)
+            //     ->first(); // Use first() to get a single result
+            // $purchaseProduct = Purchase_product::with('product')->findOrFail($id);
 
-        // Debugging: Check the result for the specific $id
+            // Debugging: Check the result for the specific $id
             // dd($purchaseProduct);
-
-            return view('admin\mange_purchase\poduct_dtailes', ['purchaseProduct' => $purchaseProduct]);
+        
+            // Pass the purchase product details to the view
+            $showData= Purchase_product::join('products','purchase_products.product_id', 'products.id')->find($id);
+            return view('admin\mange_purchase\poduct_dtailes', compact('showData'));
         }
+        
 
 
 

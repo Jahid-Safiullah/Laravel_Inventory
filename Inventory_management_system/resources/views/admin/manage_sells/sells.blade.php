@@ -15,11 +15,11 @@
 @endif
 
 
-        <div style="display: flex;" class="row">
+        <div style="display: flex;" class="row" >
 
             {{-- Left Side (Table) --}}
             <div style="flex: 1; margin-right: 20px; ">
-              <form action="{{route('order')}}" method="post">
+              <form action="{{route('order_submition')}}" method="post">
                 @csrf
                 <table style="width: 100%; border-collapse: collapse;">
 
@@ -117,7 +117,37 @@
             </div>
 
             {{-- Right Side (Product Display Card) --}}
-            <div style=" overflow-y: scroll;max-height: 600px; border-radius:  10px ">
+
+
+  {{-- Right Side with Scrollbar and Product Display --}}
+  <div style="flex: 2; max-height: 600px; overflow-y: auto;">
+    <h2>Product List</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+        <!-- Product cards will be dynamically populated here -->
+        
+        @foreach ($products as $product)
+       
+            <div class="product-card" style="width: calc(33.33% - 20px); margin-bottom: 20px; background-color:#ffffff ; color:#2A3038; padding:10px; ">
+                
+                <img src="/product_image/{{ $product->image }}" alt="Product Image"
+                style="max-width: 150px; height: 100px;">
+                <h3>{{ $product->name }} </h3>
+                <p class="description">{{ $product->description }}</p>
+                <p class="price">Price: ${{ $product->sell_price }}</p>
+
+                <form action="{{ route('add_order_to_cart', $product->purchase_id) }}" method="post">
+                    @csrf
+                <div class="action" style="display: flex;  justify-content: space-around;">
+                    <input style="width: 45px" type="number" name="quantity"  min="1" value="1" placeholder="Qty">
+                    <button type="submit" style="width: 65px" class="add-to-cart">Add</button>
+                </div>
+            </form>
+            </div>
+        @endforeach
+    
+    </div>
+</div>
+            {{-- <div style=" overflow-y: scroll;max-height: 1000px; border-radius:  10px ">
                 <div
                     style="position: sticky; top: 0; z-index: 100;  padding:10px;  background-color:rgb(158, 185, 244); text-align:center">
                     <form class=" " action="{{ url('') }}" method="post">
@@ -130,9 +160,10 @@
                     </form>
                 </div>
                 <div style="display: flex;">
+           
+                
 
-
-                    @foreach ($productRow as $product)
+                    @foreach ($products as $product)
                         <div
                             style="flex:1; margin-right: 10px; border:solid rgb(234, 234, 234) 5px; background-color: #ffffff; height:50%  ; padding:10px;text-align:center ">
                             <h2 style="margin:auto; padding:7px; color: #4CAF50">{{ $product->name }}</h2>
@@ -153,8 +184,9 @@
                             </form>
                         </div>
                     @endforeach
+              
                 </div>
-            </div>
+            </div> --}}
 
             {{-- <iframe src="{{ route('product.list') }}" style="flex:1; height: 700px; border: 1px solid #ddd;"></iframe> --}}
 

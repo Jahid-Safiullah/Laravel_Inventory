@@ -22,14 +22,14 @@ class SellController extends Controller
                         // ->select('products.name as p_name','Purchase_products.sell_price as selling_price','sells_carts.total as cart_total','sells_carts.sub_total as s_total','Purchase_products.quantity as purchase_qty','sells_carts.quantity as order_quantity' )
                         ->select('sells_carts.id as cart_id','products.name as p_name','sells_carts.total as cart_total','Purchase_products.quantity as purchase_qty','sells_carts.quantity as order_quantity','Purchase_products.sell_price as selling_price' )
                         ->get();
-        $productRow=DB::table('Purchase_products')
+        $products=DB::table('Purchase_products')
                         ->join('products', 'Purchase_products.product_id', '=', 'products.id')
                         ->select('products.id as p_id','products.name','products.image','products.description','Purchase_products.id as purchase_id','Purchase_products.sell_price','Purchase_products.dis_price')
                         ->get();
         $customers=Customer::where('status', 1)->select('name', 'id')->get();
         // dd($customer);
 
-        return view('admin\manage_sells\sells', compact('cartData','productRow','customers'));
+        return view('admin\manage_sells\sells', compact('cartData','products','customers'));
 
 
     }

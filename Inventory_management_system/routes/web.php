@@ -106,7 +106,7 @@ Route::post('/add_cart', [PurchaseProductController::class, 'add_cart']);
 
 Route::get('/sellsProduct', [SellController::class, 'index'])->name('sellsProduct');
 // Route::get('/product-list', 'App\Http\Controllers\SellController@productList')->name('product.list');
-Route::post('/product-order/{id}', 'App\Http\Controllers\SellController@addToCart')->name('add_order_to_cart');
+Route::post('/product_order/{id}', 'App\Http\Controllers\SellController@addToCart')->name('add_order_to_cart');
 Route::delete('/delete_post/{id}', 'App\Http\Controllers\SellController@delete_post');
 
 
@@ -118,7 +118,9 @@ Route::post('/store_order/{id}', [SellController::class, 'store_order'])->name('
 
 
 //order submit----
-Route::post('/order_customer', [OrderProductController::class, 'order'])->name('order');
-Route::get('/order_report', [OrderProductController::class, 'order_report'])->name('order_report');
+Route::post('/place-order', [OrderProductController::class, 'order'])->name('order_submition');
+// Route::post('/order_customer', [OrderProductController::class, 'order'])->name('order');
+// Route::get('/order_report', [OrderProductController::class, 'o_report'])->name('order_report.order');
+Route::get('/order_report', 'App\Http\Controllers\OrderProductController@o_report')->name('order_report.order');
 
 

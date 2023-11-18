@@ -56,7 +56,7 @@
             <td>{{$data->status}}</td>
             <td class="d-flex " style="">
                 <div>
-                    <a href="{{ route('purchase.details', $data->id) }}"style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-eye" style="color: #272727;"></i></a>
+                    <a href="{{ route('purchase.details', $data->pp_id) }}"style="border-radius: 10px;" class="btn btn-primary mr-2 border border-light"><i class="fa-solid fa-eye" style="color: #272727;"></i></a>
                 </div>
                 <div class="">
                     <a href="" style="border-radius: 10px;" class="btn btn-warning mr-2 border border-light"><i class="fas fa-edit" style="color: rgb(0, 0, 0);"></i></a>

@@ -11,11 +11,11 @@ class Purchase_product extends Model
 
 
     protected $table = 'Purchase_products';
-
+    protected $primaryKey = 'id'; 
     // Define the relationship to the Product model
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        // return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
 }
