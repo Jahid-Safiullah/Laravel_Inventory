@@ -119,8 +119,7 @@ Route::post('/store_order/{id}', [SellController::class, 'store_order'])->name('
 
 //order submit----
 Route::post('/place-order', [OrderProductController::class, 'order'])->name('order_submition');
-// Route::post('/order_customer', [OrderProductController::class, 'order'])->name('order');
-// Route::get('/order_report', [OrderProductController::class, 'o_report'])->name('order_report.order');
-Route::get('/order_report', 'App\Http\Controllers\OrderProductController@o_report')->name('order_report.order');
+Route::get('/order_report', 'App\Http\Controllers\OrderProductController@o_report')->name('order_report');
+Route::get('/order_invoice', [OrderProductController::class, 'print_invoice'])->name('print_invoice');
 
 

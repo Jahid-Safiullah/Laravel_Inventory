@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class OrderProductController extends Controller
 {
     public function order(Request $request)
-     { 
+     {
         // exit();
         try {
             // Check if the cart is empty
@@ -28,7 +28,7 @@ class OrderProductController extends Controller
                 'date' => 'required|date',
             ]);
 
-        
+
             // Create an order customer record
             $customerData = new Order_cusomer;
             $customerData->customer_id = $request->customer;
@@ -57,12 +57,15 @@ class OrderProductController extends Controller
 
             // Delete data from the cart table
             SellsCart::truncate();
+            return redirect()->route('print_invoice');
             return redirect()->back()->with('success', 'Order completed successfully');
+
         }catch (\Exception $e) {
             // An error occurred, rollback the transaction
             DB::rollBack();
 
             // Log the error or handle it as needed
+        // \Log::error('Order processing error: ' . $e->getMessage());
 
 
             return redirect()->back()->with('error', 'Order not completed');
@@ -71,8 +74,28 @@ class OrderProductController extends Controller
     }
 
 
+
+
+
+    public function print_invoice(){
+
+        $lastCusID=Order_product::max('order_customer_table_id');
+        $order_ricipet=Order_product::where('order_customer_table_id',$lastCusID)->get();
+
+        return view('admin\manage_sells\print_invoice',compact('order_ricipet'));
+    }
+
+
+
+
+
     public function o_report(){
-       
+
+        $ordered_product=DB::table('order_products')->join('products', 'order_products.product_id', '=', 'products.id')
+        ->join('order_cusomers', 'order_products.order_customer_table_id', '=', 'order_cusomers.id')
+
+        ->select('order_products.id as op_id','order_cusomers.id as oc_id','order_products.price','order_products.quantity','products.name','products.unit','products.image','products.status',)
+        ->get();
         return view('admin\manage_sells\sells_report',compact('ordered_product'));
     }
 

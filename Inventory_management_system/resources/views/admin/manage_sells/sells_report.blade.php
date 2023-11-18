@@ -2,32 +2,33 @@
 
 @section('content')
     <div class="">
-
         <table class="table">
             <thead>
-              <tr>
-                <th>Product ID</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-              </tr>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Phone</th>
+                    <th>Product</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
-                @foreach($orderDetails as $orderDetail)
                 <tr>
-                    <td>{{ $orderDetail->product_id }}</td>
-                    <td>{{ $orderDetail->quantity }}</td>
-                    <td>{{ $orderDetail->total_price }}</td>
-                    <!-- Add more columns as needed -->
+                    @foreach ($ordered_product as $orderDetail)
+                        <td>{{ $orderDetail->oc_id }}</td>
+                        <td>{{ $orderDetail->name }}</td>
+                        <td>{{ $orderDetail->phone }}</td>
+                        <td>
+                            @foreach ($product as $data)
+                                {{ $orderDetail->product_name }}
+                            @endforeach
+
+                        </td>
+                        <td>{{ $orderDetail->total_price }}</td>
+                        <!-- Add more columns as needed -->
+                    @endforeach
                 </tr>
-            @endforeach
-
             </tbody>
-          </table>
-
-
-
-
-
-
+        </table>
     </div>
 @endsection

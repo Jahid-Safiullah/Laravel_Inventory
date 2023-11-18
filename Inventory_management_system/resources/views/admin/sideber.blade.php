@@ -176,7 +176,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('sellsProduct')}}">Sells Order</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages">Aproval Sells Order</a></li>
-                {{-- <li class="nav-item"> <a class="nav-link" href="{{route('order_report.order')}}">Order Report</a></li> --}}
+                <li class="nav-item"> <a class="nav-link" href="{{route('order_report')}}">Order Report</a></li>
               </ul>
             </div>
           </li>

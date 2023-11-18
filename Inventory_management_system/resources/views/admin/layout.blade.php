@@ -36,7 +36,7 @@
     <style>
 
     </style>
-
+   @yield('style')
 @stack('styles')
 
   </head>
