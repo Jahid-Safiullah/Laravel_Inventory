@@ -136,9 +136,9 @@
 
             <div class="container">
 
-                <div class="receipt_header">
+                <div style="color:rgb(0, 0, 0)" class="receipt_header">
                     <h1>Receipt of Ordered </h1>
-                    <span>Famms</span>
+                    <span><b>Trunk</b></span>
                     <!-- <img src="home/images/logo.png" alt="Famms"> -->
                     <h2>Address: Dhanmondi, 1234-5 <span>Tel: +8801521319764
                         {{-- </span><span>Date:{{ $order_ricipet->created_at }}</span></h2> --}}
@@ -149,7 +149,7 @@
                 <div class="receipt_body">
 
                     <div class="date_time_con">
-                        <div class="">Order NO. : {{ $order_ricipet[0]->invoice }}</div>
+                        {{-- <div class="">Order NO. : {{ $order_ricipet->invoice }}</div> --}}
                         {{-- <div class="">Customer Name : {{ $order_ricipet->order_cusomer->customer->name }}</div> --}}
                         {{-- <div class="">Phone : {{ $order_ricipet->phone }}</div>
                         <div class="">Email : {{ $order_ricipet->email }}</div>
@@ -172,10 +172,10 @@
                                 @foreach ($order_ricipet as $orderData)
                                     <tr>
                                         <td>{{ $orderData->quantity }}</td>
-                                        <td>{{ $orderData->product->name }}</td>
+                                        {{-- <td>{{ $orderData->Product->name }}</td> --}}
                                         <!-- {{-- <td><img src="product/{{$orderDatas->image}}" alt="">
                                 </td> --}} -->
-                                        <td>{{ number_formate($orderData->price, 2) }}</td>
+                                        <td>{{ $orderData->price}}</td>
                                     </tr>
                                     @php
                                         $totalPrice = $totalPrice + $orderData->price;

@@ -6,28 +6,37 @@
             <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Phone</th>
-                    <th>Product</th>
-                    <th>Action</th>
+                    {{-- <th>Customer Name</th> --}}
+                    <th>invoice</th>
+                    <th>product</th>
+                    <th>paid</th>
+                    <th>quantity</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($all_product as $data)
                 <tr>
-                    @foreach ($ordered_product as $orderDetail)
-                        <td>{{ $orderDetail->oc_id }}</td>
-                        <td>{{ $orderDetail->name }}</td>
-                        <td>{{ $orderDetail->phone }}</td>
-                        <td>
-                            @foreach ($product as $data)
-                                {{ $orderDetail->product_name }}
+                  
+                        <td>{{ $data->id }}</td>
+                        <td>{{ $data->invoice }}</td>
+                        {{-- <td>{{ $data->product->name }}</td> --}}
+                        {{-- <td>{{ $data->product->name }}</td> --}}
+                        {{-- <td>
+                            @foreach($data->product as  $value)
+                                {{$value->name}}
                             @endforeach
+                        </td> --}}
 
+                        {{-- <td>{{ $data->total_price}}</td>
+                        <td>{{ $data->paid_amount }}</td>
+                        <td>
+                            @foreach($data->product as  $v)
+                                {{ $v->catagory }}
+                            @endforeach
                         </td>
-                        <td>{{ $orderDetail->total_price }}</td>
-                        <!-- Add more columns as needed -->
-                    @endforeach
+                        <td>{{ $data->quantity }}</td>                --}}
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

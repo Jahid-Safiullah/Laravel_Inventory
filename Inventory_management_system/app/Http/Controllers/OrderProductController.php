@@ -57,7 +57,7 @@ class OrderProductController extends Controller
 
             // Delete data from the cart table
             SellsCart::truncate();
-            return redirect()->route('print_invoice');
+            //  return redirect()->route('print_invoice');
             return redirect()->back()->with('success', 'Order completed successfully');
 
         }catch (\Exception $e) {
@@ -79,8 +79,11 @@ class OrderProductController extends Controller
 
     public function print_invoice(){
 
-        $lastCusID=Order_product::max('order_customer_table_id');
-        $order_ricipet=Order_product::where('order_customer_table_id',$lastCusID)->get();
+        // $lastCusID=Order_product::max('order_customer_table_id');
+        // $order_ricipet=Order_product::where('order_customer_table_id',$lastCusID)->get();
+        $order_ricipet=Order_product::with('product','order_cusomer.customer')->get();
+        // return $order_ricipet;
+
 
         return view('admin\manage_sells\print_invoice',compact('order_ricipet'));
     }
@@ -91,12 +94,16 @@ class OrderProductController extends Controller
 
     public function o_report(){
 
-        $ordered_product=DB::table('order_products')->join('products', 'order_products.product_id', '=', 'products.id')
-        ->join('order_cusomers', 'order_products.order_customer_table_id', '=', 'order_cusomers.id')
+        // $ordered_product=DB::table('order_products')->join('products', 'order_products.product_id', '=', 'products.id')
+        // ->join('order_cusomers', 'order_products.order_customer_table_id', '=', 'order_cusomers.id')
 
-        ->select('order_products.id as op_id','order_cusomers.id as oc_id','order_products.price','order_products.quantity','products.name','products.unit','products.image','products.status',)
-        ->get();
-        return view('admin\manage_sells\sells_report',compact('ordered_product'));
+        // ->select('order_products.id as op_id','order_cusomers.id as oc_id','order_products.price','order_products.quantity','products.name','products.unit','products.image','products.status',)
+        // ->get();
+$all_product=Order_cusomer::with('customer');
+        // $all_product=Order_product::with('product','order_cusomer.customer')->get();
+        // return $all_product;
+        // dd($all_product);
+        return view('admin\manage_sells\sells_report',compact('all_product'));
     }
 
 }

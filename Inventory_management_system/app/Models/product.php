@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
 
-    public function Order_product(){
-        return $this->hasMany('App\Order_product');
+    public function order_product(){
+        return $this->hasMany(Order_product::class);
     }
 }
