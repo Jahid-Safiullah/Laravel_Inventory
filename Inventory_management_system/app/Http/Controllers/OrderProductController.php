@@ -9,7 +9,9 @@ use App\Models\SellsCart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class OrderProductController extends Controller
 {
@@ -94,17 +96,109 @@ class OrderProductController extends Controller
 
     public function o_report(){
 
-        // $ordered_product=DB::table('order_products')->join('products', 'order_products.product_id', '=', 'products.id')
-        // ->join('order_cusomers', 'order_products.order_customer_table_id', '=', 'order_cusomers.id')
 
-        // ->select('order_products.id as op_id','order_cusomers.id as oc_id','order_products.price','order_products.quantity','products.name','products.unit','products.image','products.status',)
-        // ->get();
-$all_product=Order_cusomer::with('customer');
+        $all_product=Order_cusomer::with('customer')->get();
         // $all_product=Order_product::with('product','order_cusomer.customer')->get();
         // return $all_product;
         // dd($all_product);
         return view('admin\manage_sells\sells_report',compact('all_product'));
     }
+
+
+
+
+    public function sell_details($id){
+           // dd($id);
+            //  return $id;
+        //$all_product=Order_cusomer::with('customer')->get();
+        $allCustomerProduct=Order_product::with('product','order_cusomer.customer')->where('order_customer_table_id',$id)->get();
+        // return $allCustomerProduct;
+        // dd($all_product);
+        return view('admin\manage_sells\sells_details',compact('allCustomerProduct'));
+    }
+
+
+
+
+    public function print_pdf($id)
+    {
+        $allCustomerProduct = Order_product::with('product', 'order_cusomer.customer')->where('order_customer_table_id', $id)->get();
+
+        if ($allCustomerProduct->isEmpty()) {
+            // Handle the case where the order product is not found
+            abort(404);
+        }
+
+        $pdf = PDF::loadView('admin.manage_sells.sells_details', compact('allCustomerProduct'));
+
+        return $pdf->download('Trunk_Voucher.pdf');
+    }
+
+
+
+
+
+    //for show daily/monthly/yearly sell-----
+        public function showSells($type)
+        {
+            $headline = '';
+            $all_product = collect(); // Initialize an empty collection
+
+            // Set the headline and fetch records based on the route type
+            if ($type === 'today') {
+                $headline = 'Today\'s Sell Product List';
+                $all_product = Order_cusomer::whereDate('created_at', Carbon::today())->get();
+            } elseif ($type === 'monthly') {
+                $headline = 'Monthly Sell Product List';
+                $all_product = Order_cusomer::whereMonth('created_at', Carbon::now()->month)->get();
+            } elseif ($type === 'yearly') {
+                $headline = 'Yearly Sell Product List';
+                $all_product = Order_cusomer::whereYear('created_at', Carbon::now()->year)->get();
+            } else {
+                // Handle unknown type (optional)
+            }
+
+            return view('admin\manage_sells\todays_sell', compact('headline', 'all_product'));
+        }
+
+
+
+//for print daily/ monthly/ yearly invoice----
+    public function showInvoice($type)
+    {
+        $headline = '';
+        $records = collect(); // Initialize an empty collection
+
+        // Set the headline and fetch records based on the invoice type
+        if ($type === 'daily') {
+            $headline = 'Daily Invoice';
+            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+                                ->where('order_customer_table_id',$id)
+                                ->whereDate('created_at', Carbon::today())->get();
+
+        } elseif ($type === 'monthly') {
+            $headline = 'Monthly Invoice';
+            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+                                ->where('order_customer_table_id',$id)
+                                ->whereMonth('created_at', Carbon::now()->month)->get();
+        } elseif ($type === 'yearly') {
+            $headline = 'Yearly Invoice';
+            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+                                ->where('order_customer_table_id',$id)
+                                ->whereYear('created_at', Carbon::now()->year)->get();
+        } else {
+            // Handle unknown type (optional)
+        }
+
+        return view('admin\manage_sells\all_invoice', compact('headline', 'allCustomerProduct'));
+    }
+
+
+
+
+
+
+
 
 }
 

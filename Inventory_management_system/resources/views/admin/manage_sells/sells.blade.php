@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
- {{-- @if(session('success'))
+ @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
@@ -12,7 +12,7 @@
     <div class="alert alert-danger">
         {{ session('error') }}
     </div>
-@endif --}}
+@endif
 
 
         <div style="display: flex;" class="row" >
@@ -124,11 +124,11 @@
     <h2>Product List</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
         <!-- Product cards will be dynamically populated here -->
-        
+
         @foreach ($products as $product)
-       
+
             <div class="product-card" style="width: calc(33.33% - 20px); margin-bottom: 20px; background-color:#ffffff ; color:#2A3038; padding:10px; ">
-                
+
                 <img src="/product_image/{{ $product->image }}" alt="Product Image"
                 style="max-width: 150px; height: 100px;">
                 <h3>{{ $product->name }} </h3>
@@ -144,49 +144,10 @@
             </form>
             </div>
         @endforeach
-    
+
     </div>
 </div>
-            {{-- <div style=" overflow-y: scroll;max-height: 1000px; border-radius:  10px ">
-                <div
-                    style="position: sticky; top: 0; z-index: 100;  padding:10px;  background-color:rgb(158, 185, 244); text-align:center">
-                    <form class=" " action="{{ url('') }}" method="post">
-                        @csrf
-                        <input name="Search_product" style="border-radius:  25px 0 0 25px;height:30px; " type="text"
-                            class="" placeholder="Product name.." aria-label="search Product"
-                            aria-describedby="button-addon2">
-                        <button type="submit" style="border-radius: 0 25px 25px 0;height:30px;   " class="btn btn-info"
-                            type="button" id="button-addon2">Search</button>
-                    </form>
-                </div>
-                <div style="display: flex;">
-           
-                
 
-                    @foreach ($products as $product)
-                        <div
-                            style="flex:1; margin-right: 10px; border:solid rgb(234, 234, 234) 5px; background-color: #ffffff; height:50%  ; padding:10px;text-align:center ">
-                            <h2 style="margin:auto; padding:7px; color: #4CAF50">{{ $product->name }}</h2>
-                            <img src="/product_image/{{ $product->image }}" alt="Product Image"
-                                style="max-width: 150px; height: 100px;">
-                            <p style="color: #4CAF50">{{ $product->description }}</p>
-                            <p style="color: #4CAF50">${{ $product->sell_price }}</p>
-                            <form action="{{ route('add_order_to_cart', $product->purchase_id) }}" method="post">
-                                @csrf
-
-
-                                <label style="color: #4CAF50" for="quantity">Qty:</label>
-                                <input style="max-width: 50px ;height:42px" type="number" name="quantity" id="quantity"
-                                    value="1" min="1">
-                                <button type="submit"
-                                    style="background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; padding: 10px;">Add
-                                    to Cart</button>
-                            </form>
-                        </div>
-                    @endforeach
-              
-                </div>
-            </div> --}}
 
             {{-- <iframe src="{{ route('product.list') }}" style="flex:1; height: 700px; border: 1px solid #ddd;"></iframe> --}}
 

@@ -117,9 +117,22 @@ Route::post('/store_order/{id}', [SellController::class, 'store_order'])->name('
 
 
 
-//order submit----
+//order/sell submit----
 Route::post('/place-order', [OrderProductController::class, 'order'])->name('order_submition');
 Route::get('/order_report', 'App\Http\Controllers\OrderProductController@o_report')->name('order_report');
+Route::get('/sell_details/{id}', 'App\Http\Controllers\OrderProductController@sell_details')->name('sell_details');
+Route::get('/print_pdf/{id}', 'App\Http\Controllers\OrderProductController@print_pdf')->name('print_pdf');
+// Route::get('/todays_sell', 'App\Http\Controllers\OrderProductController@todays_sell')->name('todays_sell');
 Route::get('/order_invoice', [OrderProductController::class, 'print_invoice'])->name('print_invoice');
 
+// Example route for daily/monthly/yearly sell
+Route::get('/today-sell', [OrderProductController::class, 'showSells'])->name('todays_sell')->defaults('type', 'today');
+Route::get('/monthly-sell', [OrderProductController::class, 'showSells'])->name('monthly-sell')->defaults('type', 'monthly');
+Route::get('/yearly-sell', [OrderProductController::class, 'showSells'])->name('yearly-sell')->defaults('type', 'yearly');
 
+
+
+//for daily/monthly/yearly sell invoice
+Route::get('/daily-invoice', [OrderProductController::class, 'showInvoice'])->name('daily-invoice')->defaults('type', 'daily');
+Route::get('/monthly-invoice', [OrderProductController::class, 'showInvoice'])->name('monthly-invoice')->defaults('type', 'monthly');
+Route::get('/yearly-invoice', [OrderProductController::class, 'showInvoice'])->name('yearly-invoice')->defaults('type', 'yearly');
