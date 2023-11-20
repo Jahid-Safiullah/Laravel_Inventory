@@ -120,19 +120,19 @@ class OrderProductController extends Controller
 
 
 
-    public function print_pdf($id)
-    {
-        $allCustomerProduct = Order_product::with('product', 'order_cusomer.customer')->where('order_customer_table_id', $id)->get();
+    // public function print_pdf($id)
+    // {
+    //     $allCustomerProduct = Order_product::with('product', 'order_cusomer.customer')->where('order_customer_table_id', $id)->get();
 
-        if ($allCustomerProduct->isEmpty()) {
-            // Handle the case where the order product is not found
-            abort(404);
-        }
+    //     if ($allCustomerProduct->isEmpty()) {
+    //         // Handle the case where the order product is not found
+    //         abort(404);
+    //     }
 
-        $pdf = PDF::loadView('admin.manage_sells.sells_details', compact('allCustomerProduct'));
+    //     $pdf = PDF::loadView('admin.manage_sells.sells_details', compact('allCustomerProduct'));
 
-        return $pdf->download('Trunk_Voucher.pdf');
-    }
+    //     return $pdf->download('Trunk_Voucher.pdf');
+    // }
 
 
 
@@ -163,35 +163,35 @@ class OrderProductController extends Controller
 
 
 
-//for print daily/ monthly/ yearly invoice----
-    public function showInvoice($type)
-    {
-        $headline = '';
-        $records = collect(); // Initialize an empty collection
+// //for print daily/ monthly/ yearly invoice----
+//     public function showInvoice($type)
+//     {
+//         $headline = '';
+//         $records = collect(); // Initialize an empty collection
 
-        // Set the headline and fetch records based on the invoice type
-        if ($type === 'daily') {
-            $headline = 'Daily Invoice';
-            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
-                                ->where('order_customer_table_id',$id)
-                                ->whereDate('created_at', Carbon::today())->get();
+//         // Set the headline and fetch records based on the invoice type
+//         if ($type === 'daily') {
+//             $headline = 'Daily Invoice';
+//             $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+//                                 ->where('order_customer_table_id',$id)
+//                                 ->whereDate('created_at', Carbon::today())->get();
 
-        } elseif ($type === 'monthly') {
-            $headline = 'Monthly Invoice';
-            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
-                                ->where('order_customer_table_id',$id)
-                                ->whereMonth('created_at', Carbon::now()->month)->get();
-        } elseif ($type === 'yearly') {
-            $headline = 'Yearly Invoice';
-            $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
-                                ->where('order_customer_table_id',$id)
-                                ->whereYear('created_at', Carbon::now()->year)->get();
-        } else {
-            // Handle unknown type (optional)
-        }
+//         } elseif ($type === 'monthly') {
+//             $headline = 'Monthly Invoice';
+//             $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+//                                 ->where('order_customer_table_id',$id)
+//                                 ->whereMonth('created_at', Carbon::now()->month)->get();
+//         } elseif ($type === 'yearly') {
+//             $headline = 'Yearly Invoice';
+//             $allCustomerProduct=Order_product::with('product','order_cusomer.customer')
+//                                 ->where('order_customer_table_id',$id)
+//                                 ->whereYear('created_at', Carbon::now()->year)->get();
+//         } else {
+//             // Handle unknown type (optional)
+//         }
 
-        return view('admin\manage_sells\all_invoice', compact('headline', 'allCustomerProduct'));
-    }
+//         return view('admin\manage_sells\all_invoice', compact('headline', 'allCustomerProduct'));
+//     }
 
 
 

@@ -10,6 +10,10 @@ use App\Http\Controllers\PurchaseProductController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\OrderProductController;
 
+use App\Models\Customer;
+use App\Models\Purchase_product;
+use App\Models\Order_cusomer;
+use App\Models\Order_product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +45,30 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/', function () {
-    return view('admin.dashbord');
+    $purchase_product_Data=DB::table('Purchase_products')->join('products', 'Purchase_products.product_id', '=', 'products.id')
+    ->select('Purchase_products.id as pp_id','Purchase_products.buy_price','Purchase_products.sell_price','Purchase_products.quantity','products.name','products.description','products.unit','products.image','products.status',)
+    ->get();
+    $allCustomerData=Customer::all();
+    $product_data=Purchase_product::all();
+    $total_buy_price=0;
+    $daily_income=0;
+    foreach($product_data as $data)
+    {
+        
+        $total_buy_price=$total_buy_price+$data->buy_price;
+    }
+    $total_order=Order_cusomer::all()->count();
+    $total_order_prices=Order_product::all();
+    $price=0;
+    foreach($total_order_prices as $total_order_price)
+    {
+        $price=$price+$total_order_price->total_price;
+    }
+
+    // $delivered_order=order::where('delivery_status','=','Delivered')->get()->count();
+    // $processing_order=order::where('delivery_status','!=','Delivered')->get()->count();
+    // return $purchase_product_Data;
+    return view('admin.dashbord',compact('purchase_product_Data','allCustomerData','price','total_order','product_data','total_buy_price'));
 });
 
 
